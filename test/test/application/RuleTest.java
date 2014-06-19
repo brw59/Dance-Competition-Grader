@@ -36,7 +36,6 @@ public class RuleTest {
         r.setName("Rule5");
         
         Assert.assertEquals(r.getName(), "Rule5", "The name of the rule was not correct");
-    
     }
     
     @BeforeClass
