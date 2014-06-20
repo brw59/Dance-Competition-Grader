@@ -35,10 +35,14 @@ extends Application
 	 private TabPane tabPane;
 	 private Tab sTab;
 	 private Tab mTab;
+         private Tab sfTab;
+         private Tab mfTab;
 	 private PublicDisplay sPublicDisplay;
 	 private PublicDisplay mPublicDisplay;
 	 private TabDisplay sTabDisplay;
 	 private TabDisplay mTabDisplay;
+         private TabDisplay sfTabDisplay;
+         private TabDisplay mfTabDisplay;
 	 private MenuBar menuBar;
 	 private boolean singleSelected;
 	 private Menu mHelp;
@@ -51,7 +55,7 @@ extends Application
    
 	/**
 	 * start will run the program.  Creates 2 TabPane, PublicWindow,
-	 * and 2 PublicDisplay's and sets them all to visable.
+	 * and 2 PublicDisplay's and sets them all to visible.
 	 */
 	public void start(Stage pStage)
 	{
@@ -67,17 +71,20 @@ extends Application
 		
 		sTab = new Tab("CallBack Buddy - Single Dance");
 		mTab = new Tab("CallBack Buddy - Multiple Dance");
+                sfTab = new Tab("Single Dance Final");
+                mfTab = new Tab("Multi-Dance Final");
 		
 		sPublicDisplay = new PublicDisplay();
 		mPublicDisplay = new PublicDisplay();
 		sTabDisplay = new TabDisplay(true, sPublicDisplay, pStage);
 		mTabDisplay = new TabDisplay(false, mPublicDisplay, pStage);
+                // sfTabDisplay = new FinalTabDisplay // make new tab display with no public view
+                // mfTabDisplay = new FinalTabDisplay // make new tab display with no public view
 		sTab.setContent(sTabDisplay);
 		mTab.setContent(mTabDisplay);
 		tabPane.getTabs().add(sTab);
 		tabPane.getTabs().add(mTab);
-		mPublicWindow = new PublicWindow(sPublicDisplay, 
-										mPublicDisplay);
+		mPublicWindow = new PublicWindow(sPublicDisplay, mPublicDisplay);
 		
 		 // prevent the tabs from being able to close
 		sTab.setClosable(false);
@@ -174,7 +181,7 @@ extends Application
 			}
 		});
 		
-		pStage.setTitle("CallBack Buddy");
+		pStage.setTitle("Dance Competition Scrutineer Buddy");
 		mStage = pStage;
 		setLocation();
 		mStage.show();
