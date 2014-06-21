@@ -78,12 +78,22 @@ extends Application
 		mPublicDisplay = new PublicDisplay();
 		sTabDisplay = new TabDisplay(true, sPublicDisplay, pStage);
 		mTabDisplay = new TabDisplay(false, mPublicDisplay, pStage);
-                // sfTabDisplay = new FinalTabDisplay // make new tab display with no public view
-                // mfTabDisplay = new FinalTabDisplay // make new tab display with no public view
-		sTab.setContent(sTabDisplay);
+                
+                //just added these two
+                sfTabDisplay = new TabDisplay(true, pStage); // make new tab display with no public view
+                mfTabDisplay = new TabDisplay(false, pStage);// make new tab display with no public view
+		
+                sTab.setContent(sTabDisplay);
 		mTab.setContent(mTabDisplay);
-		tabPane.getTabs().add(sTab);
+                
+                //just added these two
+                sfTab.setContent(sfTabDisplay);
+                mfTab.setContent(mfTabDisplay);
+		
+                tabPane.getTabs().add(sTab);
 		tabPane.getTabs().add(mTab);
+                tabPane.getTabs().add(sfTab);
+                tabPane.getTabs().add(mfTab);
 		mPublicWindow = new PublicWindow(sPublicDisplay, mPublicDisplay);
 		
 		 // prevent the tabs from being able to close
