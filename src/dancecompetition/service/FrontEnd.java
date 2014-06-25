@@ -69,10 +69,11 @@ extends Application
 		
 		tabPane = new TabPane();
 		
-		sTab = new Tab("CallBack Buddy - Single Dance");
-		mTab = new Tab("CallBack Buddy - Multiple Dance");
-                sfTab = new Tab("Single Dance Final");
-                mfTab = new Tab("Multi-Dance Final");
+		sTab = new Tab("CallBacks - Single Dance");
+		mTab = new Tab("CallBacks - Multiple Dance");
+                
+                sfTab = new Tab("Final - Single Dance");
+                mfTab = new Tab("Final - Multiple Dances");
 		
 		sPublicDisplay = new PublicDisplay();
 		mPublicDisplay = new PublicDisplay();
