@@ -99,7 +99,9 @@ extends Application
 		 // prevent the tabs from being able to close
 		sTab.setClosable(false);
 		mTab.setClosable(false);
-		
+		sfTab.setClosable(false);
+                mfTab.setClosable(false);
+                
 		//setting up the menuBar
 		menuSave = new MenuItem("Save");
 		menuClear = new MenuItem("Clear");
