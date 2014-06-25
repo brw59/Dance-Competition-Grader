@@ -72,7 +72,166 @@ extends VBox
 	private List<TextField> labelTexts;
 	
 	private Stage mStage;
-	/**
+	/***
+         * This is a constructor for final dance calculations tabs
+         * @param single - tells if it is a single dance or multi dance
+         * @param primaryStage - what holds the gui
+         */
+        public TabDisplay(Boolean single, Stage primaryStage)
+	{
+		
+		mStage = primaryStage;
+		/*
+		 * initialize all the fields
+		 */
+		top = new HBox();
+		scr = new ScrollPane();
+		rightTop = new VBox();
+		mTabDisplay = this;
+		/*
+		 * creates the fields that don't need input to be created
+		 * i.e. the infoBox & infoDispaly
+		 */
+		genTable = new Button("Generate Table");
+		callBack = new Button("Calculate");
+		clear = new Button("Clear");
+		mInfoBox = new InfoBox(single, genTable);
+		mSingle = single;
+		//mInfoDisplay = new InfoDisplay(pPublicDisplay, clear, primaryStage);
+		callBack.visibleProperty().set(false);
+		top.setStyle("-fx-border-width:3;");
+		getChildren().add(top);
+		//labelTexts = new ArrayList<TextField>();
+		
+		
+		/*
+		 * scroll creation, if there is time find a way to fix some of the 
+		 * problems with this
+		 */
+		scr.setPrefSize(450, 300);
+		/*
+		 * the next few option are all just for getting the button callback
+		 * in the right place... its kind of a sloppy way to do it, but it 
+		 * works.  I've spent a couple of hours trying GridPane's to get it
+		 * in the right place, and so since they didn't work this was a 
+		 * solution that did.  If we need *time* this might be a time hole
+		 * that will work to provide it
+		 */
+		VBox buttonHolder = new VBox();
+		HBox buttonPlacer = new HBox();
+		Rectangle pusher = new Rectangle(315, 10);
+		pusher.visibleProperty().setValue(false);
+		buttonPlacer.getChildren().addAll(pusher, callBack);
+		
+		buttonHolder.getChildren().addAll(scr, buttonPlacer);
+		buttonHolder.setMargin(scr, new Insets(5));
+		top.getChildren().addAll(mInfoBox, buttonHolder);
+		top.setMargin(mInfoBox, new Insets(5));
+		/*
+		 * these are all of the button actions getting set here
+		 * first one deals with the "Generate Tables" button 
+		 */
+		genTable.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				if(getInfo())
+				{
+					int pJudges = Integer.parseInt(allInfo.get(3));
+					int pCallBacks = Integer.parseInt(allInfo.get(4));
+					DanceTable mTempTable;
+					labelTexts = new ArrayList<TextField>();
+					rightTop.getChildren().clear();
+					// create the dance tables with all their glory
+					if (mSingle)
+					{
+						mDanceTables = new ArrayList<DanceTable>(1);
+						mTempTable = new DanceTable(pJudges, pCallBacks, mTabDisplay);
+						mDanceTables.add(mTempTable);
+					}
+					else
+					{
+						int nDances = Integer.parseInt(allInfo.get(6));
+						mDanceTables = new ArrayList<DanceTable>(nDances);
+						for(int i = 0; i < nDances; i++)
+						{
+							mTempTable = new DanceTable(pJudges, pCallBacks - 2, mTabDisplay);
+							mDanceTables.add(mTempTable);
+						}
+					}
+					int labelNum = 1;
+					/*
+					 * this next part might have a better way to do this, but for 
+					 * now this works and, if we have time, it may be worth going 
+					 * back over
+					 */
+					if (mDanceTables.size() == 1)
+						rightTop.getChildren().add(mDanceTables.get(0));
+					else
+					{
+						for( DanceTable dT : mDanceTables)
+						{
+							tempHbox = new HBox();
+							TextField tempTextField = new TextField();
+							// set up the focus for the scroll bar
+							tempTextField.focusedProperty().addListener(new ChangeListener<Boolean>() 
+						    {
+				            	public void changed(ObservableValue<? extends Boolean> arg0, 
+									Boolean oV, Boolean nV)
+				            	{
+				            		if(nV)
+				            		{
+				            			lableFinder();
+				            		}
+				            	}
+							});
+							tempTextField.setOnKeyPressed(keyListener);
+							labelTexts.add(tempTextField);
+							Label tempLabel = new Label("Dance " + labelNum++);
+							tempHbox.getChildren().addAll(tempLabel, tempTextField);
+							tempHbox.setMargin(tempLabel, new Insets(10));
+							tempHbox.setMargin(tempTextField, new Insets(10));
+							rightTop.getChildren().add(tempHbox);
+							rightTop.getChildren().add(dT);
+						}
+					}
+					scr.setContent(rightTop);
+					callBack.visibleProperty().set(true);
+					mDanceTables.get(0).setFocus();
+				}
+				else
+				{
+					Alert infoWarning = new Alert(2);
+				}
+				
+			}
+		});
+		
+		/*
+		 * This button action is the "Callback button" located near the 
+		 * tables
+		 */
+		callBack.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				System.out.println("Calculate final scores here");
+			}
+		});
+		
+		/*
+		 * the clear button new the public display
+		 */
+		clear.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				clear();
+			}
+		});
+	}        
+        
+        /**
 	 * creates a TabDisplay that will be either based for the single or the
 	 * multi-dance tabs
 	 * @param single true if its for the single dance, false if its for 
