@@ -49,7 +49,8 @@ public class FinalInfoBox extends VBox
 				FXCollections.observableArrayList("--","3", "5", "7",
 								  "9", "11");
 		ObservableList<String> numberOfCouples = 
-				FXCollections.observableArrayList("--","4", "5", "6",
+				FXCollections.observableArrayList("--", "2", "3",
+                                                                  "4", "5", "6",
 								  "7", "8", "9",
 								  "10", "11", "12",
 								  "13", "14", "15",
@@ -203,7 +204,7 @@ public class FinalInfoBox extends VBox
 			grid.add(mSpecial, 4, y);
 			y+=2;
 		}
-		grid.add(new Label("Couples to call back"), 0, y);
+		grid.add(new Label("Number of Couples"), 0, y);
 		grid.add(mNumberOfCouples, 4, y);
 		y+=2;
 		grid.add(btn, 4, y);
