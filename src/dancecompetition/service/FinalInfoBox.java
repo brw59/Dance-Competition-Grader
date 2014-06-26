@@ -38,30 +38,28 @@ public class FinalInfoBox extends VBox
 	{
 		ObservableList<String> ageList = 
 				FXCollections.observableArrayList( "--",
-												   "Peewee",
-												   "Preteen",
-												   "Junior",
-												   "Youth",
-												   "Collegiate",
-												   "Adult",
-												   "Senior"
-													);
+								   "Peewee",
+								   "Preteen",
+								   "Junior",
+								   "Youth",
+								   "Collegiate",
+								   "Adult",
+								   "Senior");
 		ObservableList<String> numberOfJudges = 
 				FXCollections.observableArrayList("--","3", "5", "7",
-												  "9", "11"
-													);
+								  "9", "11");
 		ObservableList<String> numberOfCouples = 
 				FXCollections.observableArrayList("--","4", "5", "6",
-												  "7", "8", "9",
-												  "10", "11", "12",
-												  "13", "14", "15",
-												  "16", "17", "18",
-												  "19", "20", "21",
-												  "22", "23", "24",
-												  "25", "26", "27",
-												  "28", "29", "30",
-												  "31", "32", "33",
-												  "34", "35", "36");
+								  "7", "8", "9",
+								  "10", "11", "12",
+								  "13", "14", "15",
+								  "16", "17", "18",
+								  "19", "20", "21",
+								  "22", "23", "24",
+								  "25", "26", "27",
+								  "28", "29", "30",
+								  "31", "32", "33",
+								  "34", "35", "36");
 		ObservableList<String> changing;
 		ObservableList<String> danceStyle;
 		ObservableList<String> level;
@@ -103,48 +101,45 @@ public class FinalInfoBox extends VBox
 							"Bonus Swing"
 						);
 			changing = FXCollections.observableArrayList("--",
-														"A",
-														"B"
-														);
+                                                        		"A",
+									"B");
 			
 			level = FXCollections.observableArrayList("--",
-												"Newcomer",
-												"Bronze",
-												"Silver 1",
-												"Silver 2",
-												"Gold 1",
-												"Gold 2",
-												"Open",
-												"Bonus",
-												"Novice",
-												"Pre-Champion",
-												"Champion"
-												);
+								"Newcomer",
+								"Bronze",
+								"Silver 1",
+								"Silver 2",
+								"Gold 1",
+								"Gold 2",
+								"Open",
+								"Bonus",
+								"Novice",
+								"Pre-Champion",
+								"Champion");
 			changingLabel = "A/B";
 		}
 		else
 		{
 			danceStyle = FXCollections.observableArrayList("--",
-													"Standard",
-													"Latin",
-													"Smooth",	
-													"Rhythm");
+									"Standard",
+									"Latin",
+									"Smooth",	
+									"Rhythm");
 			
 			changing = FXCollections.observableArrayList("--",
-														 "2",
-														 "3",
-														 "4",
-														 "5");
+                                                                     "2",
+                                                                     "3",
+                                                                     "4",
+                                                                     "5");
 			
 			level = FXCollections.observableArrayList("--",
-												  "Bronze",
-												  "Silver",
-												  "Gold",
-												  "Open",
-												  "Novice",
-												  "Pre-Champion",
-												  "Champion"
-													);
+								  "Bronze",
+								  "Silver",
+								  "Gold",
+								  "Open",
+								  "Novice",
+								  "Pre-Champion",
+								  "Champion");
 			changingLabel = "Number Of Dances";
 		}
 		
