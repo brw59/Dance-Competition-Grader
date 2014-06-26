@@ -41,8 +41,8 @@ extends Application
 	 private PublicDisplay mPublicDisplay;
 	 private TabDisplay sTabDisplay;
 	 private TabDisplay mTabDisplay;
-         private TabDisplay sfTabDisplay;
-         private TabDisplay mfTabDisplay;
+         private FinalTabDisplay sfTabDisplay;
+         private FinalTabDisplay mfTabDisplay;
 	 private MenuBar menuBar;
 	 private boolean singleSelected;
 	 private Menu mHelp;
@@ -81,8 +81,8 @@ extends Application
 		mTabDisplay = new TabDisplay(false, mPublicDisplay, pStage);
                 
                 //just added these two
-                sfTabDisplay = new TabDisplay(true, pStage); // make new tab display with no public view
-                mfTabDisplay = new TabDisplay(false, pStage);// make new tab display with no public view
+                sfTabDisplay = new FinalTabDisplay(true, pStage); // make new tab display with no public view
+                mfTabDisplay = new FinalTabDisplay(false, pStage);// make new tab display with no public view
 		
                 sTab.setContent(sTabDisplay);
 		mTab.setContent(mTabDisplay);
