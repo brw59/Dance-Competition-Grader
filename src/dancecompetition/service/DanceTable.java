@@ -20,7 +20,6 @@ public class DanceTable extends GridPane{
     private ArrayList theJudges;
     Iterator<Judge> it;
     private TabDisplay mTabDisplay;
-    private FinalTabDisplay mFinalTabDisplay;
     
     /**
      * constructor for the danceTable class
@@ -34,39 +33,6 @@ public class DanceTable extends GridPane{
         mNumCallbacks = numCallbacks;
         int column = 2;
         mTabDisplay = pTabDisplay;
-        
-        theJudges = new ArrayList<Judge> ();
-        
-        for(int i = 0; i < mNumJudges; i++)
-        {
-            Judge newJudge;
-            if(i == 0)
-            {
-                newJudge = new Judge(mNumCallbacks, true, i + 1, this);
-            }
-            else
-            {
-                newJudge = new Judge(mNumCallbacks, false, i + 1, this);
-            }
-            theJudges.add(newJudge);
-        }
-        
-        //add judges to the GridPane.
-        it = theJudges.iterator();
-        while(it.hasNext())
-        {
-            Judge currJudge = it.next();
-            add(currJudge, column, 6);
-            column++;
-        }
-    }
-    
-       public DanceTable(int numJudges, int numCallbacks, FinalTabDisplay pFinalTabDisplay)
-    {
-        mNumJudges = numJudges;
-        mNumCallbacks = numCallbacks;
-        int column = 2;
-        mFinalTabDisplay = pFinalTabDisplay;
         
         theJudges = new ArrayList<Judge> ();
         
