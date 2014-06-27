@@ -156,7 +156,7 @@ public class FinalTabDisplay extends VBox {
 						mDanceTables = new ArrayList<DanceTable>(nDances);
 						for(int i = 0; i < nDances; i++)
 						{
-							mTempTable = new DanceTable(pJudges, pCallBacks - 2, mFinalTabDisplay);
+							mTempTable = new DanceTable(pJudges, pCallBacks, mFinalTabDisplay);
 							mDanceTables.add(mTempTable);
 						}
 					}

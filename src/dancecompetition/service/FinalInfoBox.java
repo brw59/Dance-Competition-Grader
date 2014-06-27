@@ -160,8 +160,8 @@ public class FinalInfoBox extends VBox
 		mAge.setValue("--");
 		mDanceStyle.setValue("--");
 		mNumberOfJudges.setValue("--");
-		mDanceStyle.setVisibleRowCount(33);
-		mNumberOfCouples.setVisibleRowCount(34);
+		mDanceStyle.setVisibleRowCount(15);
+		mNumberOfCouples.setVisibleRowCount(15);
 		mLevel.setVisibleRowCount(13);
 		
 		//this is just to make all of the box's the same size
