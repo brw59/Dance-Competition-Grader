@@ -140,7 +140,7 @@ public class FinalTabDisplay extends VBox {
 				{
 					int pJudges = Integer.parseInt(allInfo.get(3));
 					int pCallBacks = Integer.parseInt(allInfo.get(4));
-					DanceTable mTempTable;
+					FinalDanceTable mTempTable;
 					labelTexts = new ArrayList<TextField>();
 					rightTop.getChildren().clear();
 					// create the dance tables with all their glory
@@ -318,7 +318,7 @@ public class FinalTabDisplay extends VBox {
 		mFinalInfoBox.clear();
 		if (mDanceTables != null)
 		{		
-			for(DanceTable d : mDanceTables)
+			for(FinalDanceTable d : mDanceTables)
 			{
 				d.clear();
 			}
@@ -381,7 +381,7 @@ public class FinalTabDisplay extends VBox {
 	public int tableSelected()
 	{
 		int danceT = -1;
-		for (DanceTable dT : mDanceTables)
+		for (FinalDanceTable dT : mDanceTables)
 		{
 			danceT++;
 			if(dT.hasFocus())
