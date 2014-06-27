@@ -28,6 +28,7 @@ public class Judge extends VBox{
     private int maxChars = 3;
     final String restictTo = "[0-9]*";
 	private DanceTable mDanceTable;
+        private FinalDanceTable mfDanceTable;
 	private int arrayPos;
     
 	/**
@@ -38,10 +39,114 @@ public class Judge extends VBox{
 	 * @param judgeNum the Judge number to determain what lable that judge gets (A - K)
 	 * @param pDanceTable the table where the Judge will be stored
 	 */
-	public Judge(int pNum, Boolean displayCallbackLabels, int judgeNum, DanceTable pDanceTable)
+    public Judge(int pNum, Boolean displayCallbackLabels, int judgeNum, DanceTable pDanceTable)
     {
     	arrayPos = -1;
     	mDanceTable = pDanceTable;
+        textFields = new ArrayList<TextField>(pNum + 2);
+        for(int i = 0; i < pNum + 2; i++)
+        {
+            final TextField temp1 = new TextField()
+            {
+                /**
+                * this should make sure that the judges are restricted to numbers 0-9
+                * and only have 3 of them
+                * @param text found in the text field
+                * @return if its an acceptable match
+                */
+                private boolean matchTest(String text)
+                {
+                    return text.isEmpty() ||
+                            (text.matches(restictTo) 
+                            && getText().length() < maxChars);
+                }
+		
+                /**
+                * no really sure how this works, found the code 
+                * @http://fxexperience.com/2012/02/restricting-input-on-a-textfield/
+                */
+                @Override
+                public void replaceText(int start, int end,
+                String text)
+                {
+                    if (matchTest(text))
+                    {
+                        super.replaceText(start, end, text);
+                    }
+                }
+		
+                /**
+                * more of our black magic happening... just don't question it
+                */
+		
+                @Override
+                public void replaceSelection(String text)
+                {
+                    if(matchTest(text))
+                    {
+                        super.replaceSelection(text);
+                    }
+                }
+            };
+            temp1.setPromptText("Couple");
+            temp1.setPrefWidth(60);
+
+            /*
+             * controls what happens when text field unfocused.  This is where 
+             * error checking happens
+             */
+            temp1.focusedProperty().addListener(new ChangeListener<Boolean>() 
+            {
+            	public void changed(ObservableValue<? extends Boolean> arg0, 
+						Boolean oV, Boolean nV)
+            	{
+            		if (nV)
+            		{
+            			selected = temp1;
+            		}
+            		if (oV)
+            		{
+            			colorChange(temp1);
+            		}
+            		upDateFocus();
+            	}
+            });
+            
+            
+            temp1.setOnKeyPressed(keyListener);
+            
+            textFields.add(temp1);
+        }
+	
+        GridPane grid = new GridPane();
+        grid.setVgap(4);
+        grid.setHgap(10);
+        int y = 1;
+        int callbackNum = 1;
+        char[] judgeLetter = Character.toChars(judgeNum + 64);
+        //Label judgeNumLabel = new Label("Judge " + judgeNum);
+        Label judgeNumLabel = new Label("" + judgeLetter[0]);
+        grid.add(judgeNumLabel,1,0);
+	
+        for(TextField t : textFields)
+        {
+            if(displayCallbackLabels)
+            {
+                Label numCallback = new Label("" + callbackNum);
+                grid.add(numCallback,0,y);
+                callbackNum++;
+            }
+            grid.add(t, 1, y);
+            y += 2;
+        }
+	
+        getChildren().addAll(grid);
+    }
+    
+    public Judge(int pNum, Boolean displayCallbackLabels, int judgeNum, FinalDanceTable pDanceTable)
+    {
+    	arrayPos = -1;
+    	mfDanceTable = pDanceTable;
         textFields = new ArrayList<TextField>(pNum + 2);
         for(int i = 0; i < pNum + 2; i++)
         {

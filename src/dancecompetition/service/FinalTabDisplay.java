@@ -48,7 +48,7 @@ public class FinalTabDisplay extends VBox {
 	private FinalInfoBox mFinalInfoBox;
 	
 	//the list of all the dance tables
-	private List<DanceTable> mDanceTables;
+	private List<FinalDanceTable> mDanceTables;
 	
 	//to determine if this pane is used for single or multi Dances
 	private boolean mSingle;
@@ -146,17 +146,17 @@ public class FinalTabDisplay extends VBox {
 					// create the dance tables with all their glory
 					if (mSingle)
 					{
-						mDanceTables = new ArrayList<DanceTable>(1);
-						mTempTable = new DanceTable(pJudges, pCallBacks, mFinalTabDisplay);
+						mDanceTables = new ArrayList<FinalDanceTable>(1);
+						mTempTable = new FinalDanceTable(pJudges, pCallBacks, mFinalTabDisplay);
 						mDanceTables.add(mTempTable);
 					}
 					else
 					{
 						int nDances = Integer.parseInt(allInfo.get(6));
-						mDanceTables = new ArrayList<DanceTable>(nDances);
+						mDanceTables = new ArrayList<FinalDanceTable>(nDances);
 						for(int i = 0; i < nDances; i++)
 						{
-							mTempTable = new DanceTable(pJudges, pCallBacks, mFinalTabDisplay);
+							mTempTable = new FinalDanceTable(pJudges, pCallBacks, mFinalTabDisplay);
 							mDanceTables.add(mTempTable);
 						}
 					}
@@ -170,7 +170,7 @@ public class FinalTabDisplay extends VBox {
 						rightTop.getChildren().add(mDanceTables.get(0));
 					else
 					{
-						for( DanceTable dT : mDanceTables)
+						for( FinalDanceTable dT : mDanceTables)
 						{
 							tempHbox = new HBox();
 							TextField tempTextField = new TextField();
