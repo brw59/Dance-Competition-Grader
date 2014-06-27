@@ -19,48 +19,8 @@ public class FinalDanceTable extends GridPane{
     private int mNumCallbacks;
     private ArrayList theJudges;
     Iterator<Judge> it;
-    private TabDisplay mTabDisplay;
     private FinalTabDisplay mFinalTabDisplay;
-    
-    /**
-     * constructor for the danceTable class
-     * @param numJudges number of judges that the table needs
-     * @param numCallbacks number of textFields each judge needs
-     * @param pTabDisplay the tabDisplay this table will be in
-     */
-    public FinalDanceTable(int numJudges, int numCallbacks, TabDisplay pTabDisplay)
-    {
-        mNumJudges = numJudges;
-        mNumCallbacks = numCallbacks;
-        int column = 2;
-        mTabDisplay = pTabDisplay;
         
-        theJudges = new ArrayList<Judge> ();
-        
-        for(int i = 0; i < mNumJudges; i++)
-        {
-            Judge newJudge;
-            if(i == 0)
-            {
-                newJudge = new Judge(mNumCallbacks, true, i + 1, this);
-            }
-            else
-            {
-                newJudge = new Judge(mNumCallbacks, false, i + 1, this);
-            }
-            theJudges.add(newJudge);
-        }
-        
-        //add judges to the GridPane.
-        it = theJudges.iterator();
-        while(it.hasNext())
-        {
-            Judge currJudge = it.next();
-            add(currJudge, column, 6);
-            column++;
-        }
-    }
-    
        public FinalDanceTable(int numJudges, int numCallbacks, FinalTabDisplay pFinalTabDisplay)
     {
         mNumJudges = numJudges;
@@ -171,7 +131,7 @@ public class FinalDanceTable extends GridPane{
     	if (selected != -1)
     	{
     		if (selected == theJudges.size() - 1)
-    			mTabDisplay.nextFocus();
+    			mFinalTabDisplay.nextFocus();
     		else
     		{
     			Judge j = (Judge) theJudges.get(selected + 1);
@@ -233,7 +193,7 @@ public class FinalDanceTable extends GridPane{
     	}
     	else
     	{
-    		mTabDisplay.prevFocus();
+    		mFinalTabDisplay.prevFocus();
     	}
     }
     
@@ -263,7 +223,7 @@ public class FinalDanceTable extends GridPane{
      */
     public void vScrPos(double pos)
     {
-    	mTabDisplay.vScrPos(pos);
+    	mFinalTabDisplay.vScrPos(pos);
     }
     
     /**
@@ -274,7 +234,7 @@ public class FinalDanceTable extends GridPane{
     {
     	Judge temp = (Judge) theJudges.get(nJudge);
     	double pos = nJudge * (temp.getWidth() + 10);
-    	mTabDisplay.hScrPos(pos);
+    	mFinalTabDisplay.hScrPos(pos);
     }
     
     /**
