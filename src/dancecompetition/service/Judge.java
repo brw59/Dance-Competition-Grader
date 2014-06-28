@@ -147,8 +147,8 @@ public class Judge extends VBox{
     {
     	arrayPos = -1;
     	mfDanceTable = pDanceTable;
-        textFields = new ArrayList<TextField>(pNum + 2);
-        for(int i = 0; i < pNum + 2; i++)
+        textFields = new ArrayList<TextField>(pNum);
+        for(int i = 0; i < pNum; i++)
         {
             final TextField temp1 = new TextField()
             {
