@@ -628,8 +628,7 @@ extends VBox
 	 * @param conditionalAdder This depends on if the table that has
 	 * the selection is on the 1/2 of the tables on the upper bound 
 	 */
-	public void vValueFinder(int temp, double pos, 
-							int conditionalAdder)
+	public void vValueFinder(int temp, double pos, int conditionalAdder)
 	{
 		
 		scr.setVvalue((pos/rightTop.getHeight()) + 

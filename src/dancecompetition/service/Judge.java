@@ -27,18 +27,18 @@ public class Judge extends VBox{
     private TextField selected;
     private int maxChars = 3;
     final String restictTo = "[0-9]*";
-	private DanceTable mDanceTable;
-        private FinalDanceTable mfDanceTable;
-	private int arrayPos;
+    private DanceTable mDanceTable;
+    private FinalDanceTable mfDanceTable;
+    private int arrayPos;
     
-	/**
-	 * Each Judge has the number of callbacks + 2 text fields and will do error
-	 * checking for the text fields that the Judge holds
-	 * @param pNum the number of callbacks
-	 * @param displayCallbackLabels true if 1 -> pNum + 2 needs to be displayed
-	 * @param judgeNum the Judge number to determain what lable that judge gets (A - K)
-	 * @param pDanceTable the table where the Judge will be stored
-	 */
+    /**
+     * Each Judge has the number of callbacks + 2 text fields and will do error
+     * checking for the text fields that the Judge holds
+     * @param pNum the number of callbacks
+     * @param displayCallbackLabels true if 1 -> pNum + 2 needs to be displayed
+     * @param judgeNum the Judge number to determain what lable that judge gets (A - K)
+     * @param pDanceTable the table where the Judge will be stored
+     */
     public Judge(int pNum, Boolean displayCallbackLabels, int judgeNum, DanceTable pDanceTable)
     {
     	arrayPos = -1;
@@ -304,43 +304,43 @@ public class Judge extends VBox{
      * @return true if the text field isn't empty
      */
     public boolean notEmpty(TextField t)
-	{
-    	return (t.getText() != null && !t.getText().trim().isEmpty());
-	}
+    {
+        return (t.getText() != null && !t.getText().trim().isEmpty());
+    }
        
     /**
-	 * sets all of the judges call backs to "", so that you can start 
-	 * a new round of dances
-	 */
-	public void clear()
-	{
-		for(TextField t : textFields)
-		{
-			t.setText("");
-		}
-	}
+     * sets all of the judges call backs to "", so that you can start 
+     * a new round of dances
+     */
+    public void clear()
+    {
+    	for(TextField t : textFields)
+    	{
+    		t.setText("");
+    	}
+    }
     
-	/**
-	 * gets the list of couples the Judge called back, checks to see if there
-	 * is an error already or not
-	 * @return list of couples to call back
-	 */
+    /**
+     * gets the list of couples the Judge called back, checks to see if there
+     * is an error already or not
+     * @return list of couples to call back
+     */
     public List<String> callBack()
-	{
-            List<String> list = new ArrayList<String>(textFields.size());
-            if (containsError())
-            {
-                return list;
-            }
-            for(TextField t : textFields)
-            {
-                if ((notEmpty(t)))
-                {
-                    list.add(t.getText());
-                }
-            }
+    {
+        List<String> list = new ArrayList<String>(textFields.size());
+        if (containsError())
+        {
             return list;
-	}
+        }
+        for(TextField t : textFields)
+        {
+            if ((notEmpty(t)))
+            {
+                list.add(t.getText());
+            }
+        }
+        return list;
+    }
     
     /**
      * sets the focus to the next text field

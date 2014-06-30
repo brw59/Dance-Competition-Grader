@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javafx.scene.layout.GridPane;
 
-
 /**
  * holds each of the judges and makes a table from it
  * @author Makz

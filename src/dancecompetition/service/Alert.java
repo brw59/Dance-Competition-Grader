@@ -75,16 +75,16 @@ public class Alert
 		warning.show();
 	}
 	
-	/**
-	 * has the conditions set so that the alert pop up will dance if the conditions 
-	 * are right and helps them get carrried out
-	 */
-	private EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>()
+    /**
+     * has the conditions set so that the alert pop up will dance if the conditions 
+     * are right and helps them get carried out
+     */
+    private EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>()
     {
-		/**
-		 * takes the key press and deals with it
-		 * @param e the key press
-		 */
+	/**
+	 * takes the key press and deals with it
+	 * @param e the key press
+	 */
     	public void handle(KeyEvent e)
     	{
     		if (e.getCode() == KeyCode.D && prev.equals("e"))

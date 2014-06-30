@@ -139,16 +139,17 @@ public class FinalTabDisplay extends VBox {
 				if(getInfo())
 				{
 					int pJudges = Integer.parseInt(allInfo.get(3));
-					int pCallBacks = Integer.parseInt(allInfo.get(4));
+					int pCouples = Integer.parseInt(allInfo.get(4));
 					FinalDanceTable mTempTable;
 					labelTexts = new ArrayList<TextField>();
 					rightTop.getChildren().clear();
 					// create the dance tables with all their glory
 					if (mSingle)
 					{
-						mDanceTables = new ArrayList<FinalDanceTable>(1);
-						mTempTable = new FinalDanceTable(pJudges, pCallBacks, mFinalTabDisplay);
-						mDanceTables.add(mTempTable);
+                                            new MainController().generateTable(pJudges, pCouples);
+//						mDanceTables = new ArrayList<FinalDanceTable>(1);
+//						mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
+//						mDanceTables.add(mTempTable);
 					}
 					else
 					{
@@ -156,7 +157,7 @@ public class FinalTabDisplay extends VBox {
 						mDanceTables = new ArrayList<FinalDanceTable>(nDances);
 						for(int i = 0; i < nDances; i++)
 						{
-							mTempTable = new FinalDanceTable(pJudges, pCallBacks, mFinalTabDisplay);
+							mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
 							mDanceTables.add(mTempTable);
 						}
 					}
