@@ -16,15 +16,15 @@ import javafx.scene.layout.GridPane;
  */
 public class FinalDanceTable extends GridPane{
     private int mNumJudges;
-    private int mNumCallbacks;
+    private int mNumDancers;
     private ArrayList theJudges;
     Iterator<Judge> it;
     private FinalTabDisplay mFinalTabDisplay;
         
-       public FinalDanceTable(int numJudges, int numCallbacks, FinalTabDisplay pFinalTabDisplay)
+       public FinalDanceTable(int numJudges, int numDancers, FinalTabDisplay pFinalTabDisplay)
     {
         mNumJudges = numJudges;
-        mNumCallbacks = numCallbacks;
+        mNumDancers = numDancers;
         int column = 2;
         mFinalTabDisplay = pFinalTabDisplay;
         
@@ -35,11 +35,11 @@ public class FinalDanceTable extends GridPane{
             Judge newJudge;
             if(i == 0)
             {
-                newJudge = new Judge(mNumCallbacks, true, i + 1, this);
+                newJudge = new Judge(mNumDancers, true, i + 1, this);
             }
             else
             {
-                newJudge = new Judge(mNumCallbacks, false, i + 1, this);
+                newJudge = new Judge(mNumDancers, false, i + 1, this);
             }
             theJudges.add(newJudge);
         }
@@ -243,6 +243,6 @@ public class FinalDanceTable extends GridPane{
      */
     public int numOfCalcbacks()
     {
-    	return mNumCallbacks;
+    	return mNumDancers;
     }
 }

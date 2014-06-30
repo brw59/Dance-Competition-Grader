@@ -58,7 +58,7 @@ public class FinalTabDisplay extends VBox {
 	
 	//the three buttons used 
 	private Button genTable;
-	private Button callBack;
+	private Button genScore;
 	private Button clear;
 	
 	//The container used to pass information around
@@ -94,12 +94,12 @@ public class FinalTabDisplay extends VBox {
 		 * i.e. the infoBox & infoDispaly
 		 */
 		genTable = new Button("Generate Table");
-		callBack = new Button("Calculate");
+		genScore = new Button("Calculate");
 		clear = new Button("Clear");
 		mFinalInfoBox = new FinalInfoBox(single, genTable);
 		mSingle = single;
 		//mInfoDisplay = new InfoDisplay(pPublicDisplay, clear, primaryStage);
-		callBack.visibleProperty().set(false);
+		genScore.visibleProperty().set(false);
 		top.setStyle("-fx-border-width:3;");
 		getChildren().add(top);
 		//labelTexts = new ArrayList<TextField>();
@@ -122,7 +122,7 @@ public class FinalTabDisplay extends VBox {
 		HBox buttonPlacer = new HBox();
 		Rectangle pusher = new Rectangle(315, 10);
 		pusher.visibleProperty().setValue(false);
-		buttonPlacer.getChildren().addAll(pusher, callBack);
+		buttonPlacer.getChildren().addAll(pusher, genScore);
 		
 		buttonHolder.getChildren().addAll(scr, buttonPlacer);
 		buttonHolder.setMargin(scr, new Insets(5));
@@ -152,7 +152,7 @@ public class FinalTabDisplay extends VBox {
 					}
 					else
 					{
-						int nDances = Integer.parseInt(allInfo.get(6));
+						int nDances = Integer.parseInt(allInfo.get(5));
 						mDanceTables = new ArrayList<FinalDanceTable>(nDances);
 						for(int i = 0; i < nDances; i++)
 						{
@@ -197,7 +197,7 @@ public class FinalTabDisplay extends VBox {
 						}
 					}
 					scr.setContent(rightTop);
-					callBack.visibleProperty().set(true);
+					genScore.visibleProperty().set(true);
 					mDanceTables.get(0).setFocus();
 				}
 				else
@@ -212,11 +212,17 @@ public class FinalTabDisplay extends VBox {
 		 * This button action is the "Callback button" located near the 
 		 * tables
 		 */
-		callBack.setOnAction(new EventHandler<ActionEvent>()
+		genScore.setOnAction(new EventHandler<ActionEvent>()
 		{
 			public void handle(ActionEvent event)
 			{
 				System.out.println("Calculate final scores here");
+                                System.out.println(allInfo.get(0));
+                                System.out.println(allInfo.get(1));
+                                System.out.println(allInfo.get(2));
+                                System.out.println(allInfo.get(3));
+                                System.out.println(allInfo.get(4));
+                                System.out.println(allInfo.get(5));
 			}
 		});
 		
@@ -303,7 +309,7 @@ public class FinalTabDisplay extends VBox {
 	 */
 	public boolean multiCheck()
 	{
-		if (singleCheck() && !allInfo.get(6).equals("--"))
+		if (singleCheck() && !allInfo.get(5).equals("--"))
 			return true;
 		else
 			return false;
@@ -348,7 +354,7 @@ public class FinalTabDisplay extends VBox {
 		int danceT = tableSelected();
 		if (danceT == mDanceTables.size() - 1)
 		{
-			callBack.requestFocus();
+			genScore.requestFocus();
 		}
 		else 
 		{
