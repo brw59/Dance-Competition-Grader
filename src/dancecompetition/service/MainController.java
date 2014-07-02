@@ -100,7 +100,8 @@ public class MainController
     * output is the text area where the calculations will be displayed.
     */
    //@FXML
-   private TextArea output;
+   //private TextArea output = new TextArea();
+   public TextArea output = new TextArea();
 
    /**
     * textBoxes are the text fields where the couple numbers will be entered
@@ -167,23 +168,35 @@ public class MainController
     * Count, used to aid the setup of traversal key events
     */
    private int count = 0;
-
+private int NumJudges;
+   private int NumCouples;
+   private String Age;
+   private String AB;
+   private String DanceStyle;
+   private String Level;
    /**
     * handleAcceptButton
     *   pulls values from the choice boxes, calls setHeat() and generateTable()
     *
     * @param event An on click event generated from the GUI by the user.
     */
-   
-   //@FXML
+   public void setMainController(int numCouple, int numJudges, String mAge, String dancestyle, String level, String ab){
+       NumJudges = numJudges;
+       NumCouples = numCouple;
+       Age = mAge;
+       DanceStyle = dancestyle;
+       Level = level;
+       AB = ab;
+   }
+  
    public void handleAcceptButton(ActionEvent event)
    {
-      String tempStyle = dance.getValue().toString();
-      String tempLevel = level.getValue().toString();
-      String tempAB = ab.getValue().toString();
-      String tempAge = age.getValue().toString();
-      int tempJudges = Integer.parseInt(judges.getValue().toString());
-      int tempCouples = Integer.parseInt(couples.getValue().toString());
+      String tempStyle = DanceStyle;
+      String tempLevel = Level;
+      String tempAB = AB;
+      String tempAge = Age;
+      int tempJudges = NumJudges;
+      int tempCouples = NumCouples;
       SingleFinalLite.getInstance().getData()
                      .setHeat(tempAge, tempLevel, tempStyle, tempJudges,
          tempCouples, tempAB);
@@ -259,8 +272,12 @@ public class MainController
     * @param judges represents the current number of Judges for this heat.
     * @param couples represents the current number of Couples for this heat.
     */
+   
+   
    public void generateTable(int njudges, int ncouples)
    {
+       NumJudges = njudges;
+       NumCouples = ncouples;
       judgeNames = new ArrayList();
       couplePlace = new ArrayList();
       textBoxes = new ArrayList();
@@ -381,9 +398,17 @@ public class MainController
    @FXML
    public void handleCalcButton(ActionEvent event)
    {
+       String tempStyle = DanceStyle;
+      String tempLevel = Level;
+      String tempAB = AB;
+      String tempAge = Age;
+      int tempJudges = NumJudges;
+      int tempCouples = NumCouples;
+      SingleFinalLite.getInstance().getData()
+                     .setHeat(tempAge, tempLevel, tempStyle, tempJudges,
+         tempCouples, tempAB);
+       
       //Setup needed data
-      int tempJudges = Integer.parseInt(judges.getValue().toString());
-      int tempCouples = Integer.parseInt(couples.getValue().toString());
       ArrayList<Integer> result;
       boolean errorA;
       boolean errorB;

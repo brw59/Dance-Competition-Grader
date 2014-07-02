@@ -123,6 +123,7 @@ public class FinalTabDisplay extends VBox {
 		 * that will work to provide it
 		 */
 		VBox buttonHolder = new VBox();
+                VBox Calculate = new VBox();
 		HBox buttonPlacer = new HBox();
 		Rectangle pusher = new Rectangle(315, 10);
 		pusher.visibleProperty().setValue(false);
@@ -146,13 +147,21 @@ public class FinalTabDisplay extends VBox {
 				{
 					int pJudges = Integer.parseInt(allInfo.get(3));
 					int pCouples = Integer.parseInt(allInfo.get(4));
+                                        String pAge = allInfo.get(0);
+                                        String pDancestyle = allInfo.get(1);
+                                        String pLevel = allInfo.get(2);
+                                        String pAB = allInfo.get(5);
 					FinalDanceTable mTempTable;
                                         MainController mMainTable;
 					labelTexts = new ArrayList<TextField>();
 					rightTop.getChildren().clear();
+                                        main.setMainController(pCouples, pJudges, pAge, pDancestyle,
+                                                    pLevel, pAB);
+                                        
 					//create the dance tables with all their glory
 					if (mSingle)
                                         {
+                                            
                                             main.generateTable(pJudges, pCouples);
                                             //Main = new ArrayList<MainController>(1);
                                             //mMainTable = new MainController(pJudges, pCouples);
@@ -237,6 +246,9 @@ public class FinalTabDisplay extends VBox {
 			public void handle(ActionEvent event)
 			{
 				System.out.println("Calculate final scores here");
+                                main.handleCalcButton(event);
+                                //rightTop.getChildren().add(main.output);
+                                
 			}
 		});
 		
