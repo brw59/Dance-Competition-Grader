@@ -56,97 +56,99 @@ public class MainController
    /**
     * The main area of the display, used for adding children
     */
-   @FXML
-   private Pane mainarea;
+   //@FXML
+   //private Pane mainarea = new Pane();
+   public Pane mainarea = new Pane();
 
    /**
     * ab choicebox selects if there is an a or b heat in the final
     */
-   @FXML
+  // @FXML
    private ChoiceBox<?> ab;
 
    /**
     * age is the age group of the dancers in the current competition
     */
-   @FXML
+  // @FXML
    private ChoiceBox<?> age;
 
    /**
     * couples selects the number of couples in the heat
     */
-   @FXML
+   //@FXML
    private ChoiceBox<?> couples;
 
    /**
     * dance is the style of dance for the current heat
     */
-   @FXML
+   //@FXML
    private ChoiceBox<?> dance;
 
    /**
     * judges is the number of judges active on the current heat
     */
-   @FXML
+  // @FXML
    private ChoiceBox<?> judges;
 
    /**
     * level is the competition level of the dance
     */
-   @FXML
+   //@FXML
    private ChoiceBox<?> level;
 
    /**
     * output is the text area where the calculations will be displayed.
     */
-   @FXML
+   //@FXML
    private TextArea output;
 
    /**
     * textBoxes are the text fields where the couple numbers will be entered
     */
-   @FXML
+   //@FXML
    private ArrayList<TextField> textBoxes = new ArrayList();
 
    /**
     * the placement box, simply a location to place placement labels
     */
-   @FXML
-   private VBox placementBox;
-
+   //@FXML
+   //private VBox placementBox = new VBox();
+    public VBox placementBox = new VBox();
    /**
     * judges box, simply a location to place the judge letter labels
     */
-   @FXML
-   private HBox judgesBox;
+   //@FXML
+   public HBox judgesBox = new HBox();
+   //private HBox judgesBox = new HBox();
 
    /**
     * Judges names labels, stored in an array for easier insertion
     */
-   @FXML
+   //@FXML
    private ArrayList<Label> judgeNames = new ArrayList();
 
    /**
     * Placement labels, stored in an array for easier insertion
     */
-   @FXML
+   //@FXML
    private ArrayList<Label> couplePlace = new ArrayList();
 
    /**
     * calculate button, used to request focus to force proper traversal order
     */
-   @FXML
+   //@FXML
    private Button calculateButton;
 
    /**
     * statusMsg label, line 1
     */
-   @FXML
+   //@FXML
    private Label statusMSG = new Label();
 
    /**
     * statusMSG2 label, line 2
     */
-   @FXML
+   //@FXML
    private Label statusMSG2 = new Label();
 
    /**
@@ -172,7 +174,8 @@ public class MainController
     *
     * @param event An on click event generated from the GUI by the user.
     */
-   @FXML
+   
+   //@FXML
    public void handleAcceptButton(ActionEvent event)
    {
       String tempStyle = dance.getValue().toString();
@@ -256,25 +259,25 @@ public class MainController
     * @param judges represents the current number of Judges for this heat.
     * @param couples represents the current number of Couples for this heat.
     */
-   public void generateTable(int judges, int couples)
+   public void generateTable(int njudges, int ncouples)
    {
       judgeNames = new ArrayList();
       couplePlace = new ArrayList();
       textBoxes = new ArrayList();
 
       //initialize the array of judges labels
-      judgeNames = generateLabel(judges, 50, judgesnames);
-      couplePlace = generateLabel(couples, 25, places);
+      judgeNames = generateLabel(njudges, 50, judgesnames);
+      couplePlace = generateLabel(ncouples, 25, places);
 
       int layoutx = 365;
 
       //initialize the array of text fields. They have unique id's
       //and positioning.
-      for (int x = 0; x < judges; x++)
+      for (int x = 0; x < njudges; x++)
       {
          int layouty = 50;
 
-         for (int y = 0; y < couples; y++)
+         for (int y = 0; y < ncouples; y++)
          {
             TextField toAdd = new TextField();
             toAdd.setLayoutX(layoutx);
@@ -289,13 +292,13 @@ public class MainController
       }
 
       //Add all created data to the GUI
-      judgesBox.getChildren().addAll(judgeNames);
-      placementBox.getChildren().addAll(couplePlace);
-      mainarea.getChildren().addAll(textBoxes);
+     judgesBox.getChildren().addAll(judgeNames);
+     placementBox.getChildren().addAll(couplePlace);
+     mainarea.getChildren().addAll(textBoxes);
 
       //attempts to create the key listner to use the return/enter key for
       //traversal
-      EventHandler traverser =
+     EventHandler traverser =
          new EventHandler<KeyEvent>()
          {
             @Override
@@ -313,10 +316,10 @@ public class MainController
                event.consume();
             }
          };
-
+     
       count = 0;
 
-      for (int b = 0; b < ((judges * couples) - 1); b++)
+      for (int b = 0; b < ((njudges * ncouples) - 1); b++)
       {
          count = b;
          System.out.println(count);
@@ -325,6 +328,7 @@ public class MainController
       }
    }
    ;
+   
 
    /**
     * Function which requests the focus for a certain node

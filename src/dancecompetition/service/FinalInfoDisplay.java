@@ -140,7 +140,7 @@ public class FinalInfoDisplay {
       mPreview.setPrefSize(400, 190);
       mPreview.setWrapText(true);
       mPreview.setWrapText(true);
-      
+     
       mDisplay = new TextArea();
       mDisplay.setPrefSize(445, 410);
       mDisplay.setWrapText(true);

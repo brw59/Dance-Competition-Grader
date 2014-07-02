@@ -47,6 +47,10 @@ public class FinalTabDisplay extends VBox {
 	//This is the infoBox
 	private FinalInfoBox mFinalInfoBox;
 	
+        //I added this
+        private MainController main = new MainController();
+        
+        private List<MainController> Main;
 	//the list of all the dance tables
 	private List<FinalDanceTable> mDanceTables;
 	
@@ -102,7 +106,7 @@ public class FinalTabDisplay extends VBox {
 		genScore.visibleProperty().set(false);
 		top.setStyle("-fx-border-width:3;");
 		getChildren().add(top);
-		//labelTexts = new ArrayList<TextField>();
+		labelTexts = new ArrayList<TextField>();
 		
 		
 		/*
@@ -125,8 +129,10 @@ public class FinalTabDisplay extends VBox {
 		buttonPlacer.getChildren().addAll(pusher, genScore);
 		
 		buttonHolder.getChildren().addAll(scr, buttonPlacer);
+                //buttonHolder.getChildren().addAll(buttonPlacer);
 		buttonHolder.setMargin(scr, new Insets(5));
-		top.getChildren().addAll(mFinalInfoBox, buttonHolder);
+		//top.getChildren().addAll(mFinalInfoBox);
+                top.getChildren().addAll(mFinalInfoBox, buttonHolder);
 		top.setMargin(mFinalInfoBox, new Insets(5));
 		/*
 		 * these are all of the button actions getting set here
@@ -141,15 +147,19 @@ public class FinalTabDisplay extends VBox {
 					int pJudges = Integer.parseInt(allInfo.get(3));
 					int pCouples = Integer.parseInt(allInfo.get(4));
 					FinalDanceTable mTempTable;
+                                        MainController mMainTable;
 					labelTexts = new ArrayList<TextField>();
 					rightTop.getChildren().clear();
-					// create the dance tables with all their glory
+					//create the dance tables with all their glory
 					if (mSingle)
-					{
-                                            new MainController().generateTable(pJudges, pCouples);
-//						mDanceTables = new ArrayList<FinalDanceTable>(1);
-//						mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
-//						mDanceTables.add(mTempTable);
+                                        {
+                                            main.generateTable(pJudges, pCouples);
+                                            //Main = new ArrayList<MainController>(1);
+                                            //mMainTable = new MainController(pJudges, pCouples);
+                                            //Main.add(mMainTable);
+						//mDanceTables = new ArrayList<FinalDanceTable>(1);
+                                            //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
+						//mDanceTables.add(mMainTable);
 					}
 					else
 					{
@@ -167,8 +177,12 @@ public class FinalTabDisplay extends VBox {
 					 * now this works and, if we have time, it may be worth going 
 					 * back over
 					 */
-					if (mDanceTables.size() == 1)
-						rightTop.getChildren().add(mDanceTables.get(0));
+					if (single){
+                                            rightTop.getChildren().add(main.judgesBox);
+                                            rightTop.getChildren().add(main.mainarea);
+                                            rightTop.getChildren().add(main.placementBox);
+                                        }
+						
 					else
 					{
 						for( FinalDanceTable dT : mDanceTables)
@@ -199,8 +213,13 @@ public class FinalTabDisplay extends VBox {
 					}
 					scr.setContent(rightTop);
 					genScore.visibleProperty().set(true);
+                                        if(single)
+                                        {  
+                                        }
+                                        else{
 					mDanceTables.get(0).setFocus();
-				}
+                                        }
+                                }
 				else
 				{
 					Alert infoWarning = new Alert(2);
@@ -218,12 +237,6 @@ public class FinalTabDisplay extends VBox {
 			public void handle(ActionEvent event)
 			{
 				System.out.println("Calculate final scores here");
-                                System.out.println(allInfo.get(0));
-                                System.out.println(allInfo.get(1));
-                                System.out.println(allInfo.get(2));
-                                System.out.println(allInfo.get(3));
-                                System.out.println(allInfo.get(4));
-                                System.out.println(allInfo.get(5));
 			}
 		});
 		
@@ -420,8 +433,9 @@ public class FinalTabDisplay extends VBox {
 	public void vScrPos(double pos)
 	{
 		
-		if (mSingle)
-			scr.setVvalue(pos / rightTop.getHeight());
+		if (mSingle){
+                    scr.setVvalue(pos/rightTop.getHeight());
+                }
 		else 
 		{
 			int temp = tableSelected();
