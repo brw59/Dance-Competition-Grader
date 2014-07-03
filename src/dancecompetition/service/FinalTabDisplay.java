@@ -246,7 +246,7 @@ public class FinalTabDisplay extends VBox {
 			public void handle(ActionEvent event)
 			{
 				System.out.println("Calculate final scores here");
-                                main.handleCalcButton(event);
+                                main.handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
                                 //rightTop.getChildren().add(main.output);
                                 
 			}

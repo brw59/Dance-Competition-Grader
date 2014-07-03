@@ -396,7 +396,7 @@ private int NumJudges;
     * @param event An on click event generated from the GUI by the user.
     */
    @FXML
-   public void handleCalcButton(ActionEvent event)
+   public void handleCalcButton(ActionEvent event, TextArea mCalculations)
    {
        String tempStyle = DanceStyle;
       String tempLevel = Level;
@@ -404,6 +404,7 @@ private int NumJudges;
       String tempAge = Age;
       int tempJudges = NumJudges;
       int tempCouples = NumCouples;
+      output = mCalculations;
       SingleFinalLite.getInstance().getData()
                      .setHeat(tempAge, tempLevel, tempStyle, tempJudges,
          tempCouples, tempAB);

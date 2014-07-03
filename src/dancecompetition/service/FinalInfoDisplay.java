@@ -483,5 +483,7 @@ public class FinalInfoDisplay {
       }
     
 }
-
+public TextArea getCalcBox(){
+    return mCalculations;
+}
 }
