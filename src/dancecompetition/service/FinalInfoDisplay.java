@@ -136,7 +136,7 @@ public class FinalInfoDisplay {
       mCalculations.setPrefSize(400, 190);
       mCalculations.setWrapText(true);
 
-      mPreview = new TextArea();
+      /*mPreview = new TextArea();
       mPreview.setPrefSize(400, 190);
       mPreview.setWrapText(true);
       mPreview.setWrapText(true);
@@ -187,12 +187,12 @@ public class FinalInfoDisplay {
          {
             mPublicDisplay.setTextSize(mPublicDisplay.getTextSize() - 2);
          }
-      });
+      });*/
       
       mClear = clearButton;
    }
-*/
-   }
+
+   
    /**
     * Initializes the layout of the controls
     */
@@ -207,10 +207,10 @@ public class FinalInfoDisplay {
       buttons.getChildren().addAll(mClear);
       /*
       leftBox.getChildren().add(mPostToDisplay);
-      leftBox.getChildren().add(mClear);
-      */
+      */leftBox.getChildren().add(mClear);
+      
       leftBox.getChildren().add(buttons);
-      VBox rightBox = new VBox(5);
+      //VBox rightBox = new VBox(5);
       //rightBox.getChildren().add(new Label("Display"));
       //rightBox.getChildren().add(mDisplay);
 
@@ -221,7 +221,7 @@ public class FinalInfoDisplay {
 
       mDisplayBox.setPadding(new Insets(5));
       mDisplayBox.getChildren().add(leftBox);
-      mDisplayBox.getChildren().add(rightBox);
+      //mDisplayBox.getChildren().add(rightBox);
    }
 
    /**

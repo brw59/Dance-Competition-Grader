@@ -102,10 +102,10 @@ public class FinalTabDisplay extends VBox {
 		clear = new Button("Clear");
 		mFinalInfoBox = new FinalInfoBox(single, genTable);
 		mSingle = single;
-		//mInfoDisplay = new InfoDisplay(pPublicDisplay, clear, primaryStage);
+		mFinalInfoDisplay = new FinalInfoDisplay(clear, primaryStage);
 		genScore.visibleProperty().set(false);
 		top.setStyle("-fx-border-width:3;");
-		getChildren().add(top);
+		getChildren().addAll(top, mFinalInfoDisplay.getDisplayBox());
 		labelTexts = new ArrayList<TextField>();
 		
 		
