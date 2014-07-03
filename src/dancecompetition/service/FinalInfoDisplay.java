@@ -133,7 +133,7 @@ public class FinalInfoDisplay {
    {
       mDisplayBox = new HBox(10);
       mCalculations = new TextArea();
-      mCalculations.setPrefSize(400, 190);
+      mCalculations.setPrefSize(615, 315);
       mCalculations.setWrapText(true);
 
       /*mPreview = new TextArea();
