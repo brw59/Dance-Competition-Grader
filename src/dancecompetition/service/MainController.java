@@ -168,7 +168,7 @@ public class MainController
     * Count, used to aid the setup of traversal key events
     */
    private int count = 0;
-private int NumJudges;
+   private int NumJudges;
    private int NumCouples;
    private String Age;
    private String AB;
@@ -180,15 +180,102 @@ private int NumJudges;
     *
     * @param event An on click event generated from the GUI by the user.
     */
-   public void setMainController(int numCouple, int numJudges, String mAge, String dancestyle, String level, String ab){
+   /*public void setMainController(int numCouple, int numJudges, String mAge, String dancestyle, String level, String ab){
        NumJudges = numJudges;
        NumCouples = numCouple;
        Age = mAge;
        DanceStyle = dancestyle;
        Level = level;
        AB = ab;
+   }*/
+
+   /**
+    * Creates the table of text fields as an arraylist of textfields
+    *
+    * @param judges represents the current number of Judges for this heat.
+    * @param couples represents the current number of Couples for this heat.
+    */
+   
+   
+   public MainController(int njudges, int ncouples, String mAge, String dancestyle, String level, String ab)
+   {
+       NumJudges = njudges;
+       NumCouples = ncouples;
+       Age = mAge;
+       DanceStyle = dancestyle;
+       Level = level;
+       AB = ab;
+       
+      judgeNames = new ArrayList();
+      couplePlace = new ArrayList();
+      textBoxes = new ArrayList();
+
+      //initialize the array of judges labels
+      judgeNames = generateLabel(njudges, 50, judgesnames);
+      couplePlace = generateLabel(ncouples, 25, places);
+
+      int layoutx = 365;
+
+      //initialize the array of text fields. They have unique id's
+      //and positioning.
+      for (int x = 0; x < njudges; x++)
+      {
+         int layouty = 50;
+
+         for (int y = 0; y < ncouples; y++)
+         {
+            TextField toAdd = new TextField();
+            toAdd.setLayoutX(layoutx);
+            toAdd.setLayoutY(layouty);
+            toAdd.setPrefColumnCount(3);
+            toAdd.setId("box" + x + y);
+            textBoxes.add(toAdd);
+            layouty += 25;
+         }
+
+         layoutx += 50;
+      }
+
+      //Add all created data to the GUI
+     judgesBox.getChildren().addAll(judgeNames);
+     placementBox.getChildren().addAll(couplePlace);
+     mainarea.getChildren().addAll(textBoxes);
+
+      //attempts to create the key listner to use the return/enter key for
+      //traversal
+     EventHandler traverser =
+         new EventHandler<KeyEvent>()
+         {
+            @Override
+            public void handle(KeyEvent event)
+            {
+               int cell = hasFocus(textBoxes);
+               System.err.println(cell);
+
+               if (event.getCode() == KeyCode.ENTER)
+               {
+                  requestFocus(textBoxes.get(cell + 1));
+                  System.out.println(textBoxes.get(cell + 1).getId());
+               }
+
+               event.consume();
+            }
+         };
+     
+      count = 0;
+
+      for (int b = 0; b < ((njudges * ncouples) - 1); b++)
+      {
+         count = b;
+         System.out.println(count);
+         textBoxes.get(b).removeEventHandler(KeyEvent.KEY_RELEASED, traverser);
+         textBoxes.get(b).addEventHandler(KeyEvent.KEY_RELEASED, traverser);
+      }
    }
-  
+   
+   
+   
+   
    public void handleAcceptButton(ActionEvent event)
    {
       String tempStyle = DanceStyle;
@@ -395,10 +482,10 @@ private int NumJudges;
     *
     * @param event An on click event generated from the GUI by the user.
     */
-   @FXML
+   //@FXML
    public void handleCalcButton(ActionEvent event, TextArea mCalculations)
    {
-       String tempStyle = DanceStyle;
+      String tempStyle = DanceStyle;
       String tempLevel = Level;
       String tempAB = AB;
       String tempAge = Age;

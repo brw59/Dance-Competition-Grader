@@ -48,8 +48,8 @@ public class FinalTabDisplay extends VBox {
 	private FinalInfoBox mFinalInfoBox;
 	
         //I added this
-        private MainController main = new MainController();
-        
+        //private MainController main = new MainController();
+
         private List<MainController> Main;
 	//the list of all the dance tables
 	private List<FinalDanceTable> mDanceTables;
@@ -64,6 +64,8 @@ public class FinalTabDisplay extends VBox {
 	private Button genTable;
 	private Button genScore;
 	private Button clear;
+        
+        private int NumDances;
 	
 	//The container used to pass information around
 	private List<String> allInfo;
@@ -152,20 +154,20 @@ public class FinalTabDisplay extends VBox {
                                         String pLevel = allInfo.get(2);
                                         String pAB = allInfo.get(5);
 					FinalDanceTable mTempTable;
+                                        //MainController Main = new MainController(pJudges, pCouples);
                                         MainController mMainTable;
 					labelTexts = new ArrayList<TextField>();
 					rightTop.getChildren().clear();
-                                        main.setMainController(pCouples, pJudges, pAge, pDancestyle,
-                                                    pLevel, pAB);
+                                        
                                         
 					//create the dance tables with all their glory
 					if (mSingle)
                                         {
-                                            
-                                            main.generateTable(pJudges, pCouples);
-                                            //Main = new ArrayList<MainController>(1);
-                                            //mMainTable = new MainController(pJudges, pCouples);
-                                            //Main.add(mMainTable);
+                                              
+                                            Main = new ArrayList<MainController>(1);
+                                            mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
+                                                    pLevel, pAB);
+                                            Main.add(mMainTable);
 						//mDanceTables = new ArrayList<FinalDanceTable>(1);
                                             //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
 						//mDanceTables.add(mMainTable);
@@ -173,11 +175,16 @@ public class FinalTabDisplay extends VBox {
 					else
 					{
 						int nDances = Integer.parseInt(allInfo.get(5));
+                                                NumDances = nDances;
+                                                Main = new ArrayList<MainController>(nDances);
 						mDanceTables = new ArrayList<FinalDanceTable>(nDances);
 						for(int i = 0; i < nDances; i++)
 						{
-							mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
-							mDanceTables.add(mTempTable);
+                                                    mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
+                                                                                    pLevel, pAB);
+                                                    Main.add(mMainTable);
+                                                    mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
+                                                    mDanceTables.add(mTempTable);
 						}
 					}
 					int labelNum = 1;
@@ -187,14 +194,14 @@ public class FinalTabDisplay extends VBox {
 					 * back over
 					 */
 					if (single){
-                                            rightTop.getChildren().add(main.judgesBox);
-                                            rightTop.getChildren().add(main.mainarea);
-                                            rightTop.getChildren().add(main.placementBox);
+                                            rightTop.getChildren().add(Main.get(0).judgesBox);
+                                            rightTop.getChildren().add(Main.get(0).mainarea);
+                                            rightTop.getChildren().add(Main.get(0).placementBox);
                                         }
 						
 					else
 					{
-						for( FinalDanceTable dT : mDanceTables)
+						for(int i = 0; i < NumDances; i++)//for(FinalDanceTable dt : mDanceTables)
 						{
 							tempHbox = new HBox();
 							TextField tempTextField = new TextField();
@@ -217,7 +224,10 @@ public class FinalTabDisplay extends VBox {
 							tempHbox.setMargin(tempLabel, new Insets(10));
 							tempHbox.setMargin(tempTextField, new Insets(10));
 							rightTop.getChildren().add(tempHbox);
-							rightTop.getChildren().add(dT);
+                                                        rightTop.getChildren().add(Main.get(i).judgesBox);
+                                                        rightTop.getChildren().add(Main.get(i).mainarea);
+                                                        rightTop.getChildren().add(Main.get(i).placementBox);
+							//rightTop.getChildren().add(dt);
 						}
 					}
 					scr.setContent(rightTop);
@@ -245,9 +255,18 @@ public class FinalTabDisplay extends VBox {
 		{
 			public void handle(ActionEvent event)
 			{
+                            if(single)
+                            {
 				System.out.println("Calculate final scores here");
-                                main.handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
-                                //rightTop.getChildren().add(main.output);
+                                Main.get(0).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
+                            }
+                            else{
+                                
+                                for(int i = 0; i < NumDances; i++){
+                                   System.out.println("Calculate MultiDance Final Scores Here"); 
+                                 Main.get(i).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
+                                }
+                            }
                                 
 			}
 		});
