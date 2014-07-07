@@ -174,18 +174,18 @@ public class FinalTabDisplay extends VBox {
 					}
 					else
 					{
-						int nDances = Integer.parseInt(allInfo.get(5));
-                                                NumDances = nDances;
-                                                Main = new ArrayList<MainController>(nDances);
-						mDanceTables = new ArrayList<FinalDanceTable>(nDances);
-						for(int i = 0; i < nDances; i++)
-						{
-                                                    mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
-                                                                                    pLevel, pAB);
-                                                    Main.add(mMainTable);
-                                                    //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
-                                                    //mDanceTables.add(mTempTable);
-						}
+                                            int nDances = Integer.parseInt(allInfo.get(5));
+                                            NumDances = nDances;
+                                            Main = new ArrayList<MainController>(nDances);
+                                            mDanceTables = new ArrayList<FinalDanceTable>(nDances);
+                                            for(int i = 0; i < nDances; i++)
+                                            {
+                                                mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
+                                                                                pLevel, pAB);
+                                                Main.add(mMainTable);
+                                                //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
+                                                //mDanceTables.add(mTempTable);
+                                            }
 					}
 					int labelNum = 1;
 					/*
@@ -203,31 +203,32 @@ public class FinalTabDisplay extends VBox {
 					{
 						for(int i = 0; i < NumDances; i++)//for(FinalDanceTable dt : mDanceTables)
 						{
-							tempHbox = new HBox();
-							TextField tempTextField = new TextField();
-							// set up the focus for the scroll bar
-							tempTextField.focusedProperty().addListener(new ChangeListener<Boolean>() 
-						    {
-				            	public void changed(ObservableValue<? extends Boolean> arg0, 
-									Boolean oV, Boolean nV)
-				            	{
-				            		if(nV)
-				            		{
-				            			lableFinder();
-				            		}
-				            	}
-							});
-							tempTextField.setOnKeyPressed(keyListener);
-							labelTexts.add(tempTextField);
-							Label tempLabel = new Label("Dance " + labelNum++);
-							tempHbox.getChildren().addAll(tempLabel, tempTextField);
-							tempHbox.setMargin(tempLabel, new Insets(10));
-							tempHbox.setMargin(tempTextField, new Insets(10));
-							rightTop.getChildren().add(tempHbox);
-                                                        rightTop.getChildren().add(Main.get(i).judgesBox);
-                                                        rightTop.getChildren().add(Main.get(i).mainarea);
-                                                        rightTop.getChildren().add(Main.get(i).placementBox);
-							//rightTop.getChildren().add(dt);
+                                                    tempHbox = new HBox();
+                                                    TextField tempTextField = new TextField();
+                                                    // set up the focus for the scroll bar
+                                                    tempTextField.focusedProperty().addListener(new ChangeListener<Boolean>() 
+                                                    {
+                                                        public void changed(ObservableValue<? extends Boolean> arg0, 
+                                                                            Boolean oV, Boolean nV)
+                                                        {
+                                                            if(nV)
+                                                            {
+                                                        	lableFinder();
+                                                            }
+                                                        }
+                                                    });
+							
+                                                    tempTextField.setOnKeyPressed(keyListener);
+                                                    labelTexts.add(tempTextField);
+                                                    Label tempLabel = new Label("Dance " + labelNum++);
+                                                    tempHbox.getChildren().addAll(tempLabel, tempTextField);
+                                                    tempHbox.setMargin(tempLabel, new Insets(10));
+                                                    tempHbox.setMargin(tempTextField, new Insets(10));
+                                                    rightTop.getChildren().add(tempHbox);
+                                                    rightTop.getChildren().add(Main.get(i).judgesBox);
+                                                    rightTop.getChildren().add(Main.get(i).mainarea);
+                                                    rightTop.getChildren().add(Main.get(i).placementBox);
+                                                    //rightTop.getChildren().add(dt);
 						}
 					}
 					scr.setContent(rightTop);
@@ -235,13 +236,13 @@ public class FinalTabDisplay extends VBox {
                                         if(single)
                                         {  
                                         }
-                                        else{
-					mDanceTables.get(0).setFocus();
+                                        else {
+                                            mDanceTables.get(0).setFocus();
                                         }
                                 }
 				else
 				{
-					Alert infoWarning = new Alert(2);
+                                    Alert infoWarning = new Alert(2);
 				}
 				
 			}
