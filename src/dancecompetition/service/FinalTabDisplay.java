@@ -258,14 +258,14 @@ public class FinalTabDisplay extends VBox {
 			{
                             if(single)
                             {
-				System.out.println("Calculate final scores here");
+				System.out.println("Calculate Final Scores Here");
                                 Main.get(0).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
                             }
                             else{
                                 
                                 for(int i = 0; i < NumDances; i++){
-                                   System.out.println("Calculate MultiDance Final Scores Here"); 
-                                 Main.get(i).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
+                                    System.out.println("Calculate MultiDance Final Scores Here"); 
+                                    Main.get(i).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
                                 }
                             }
                                 
