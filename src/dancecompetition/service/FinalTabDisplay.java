@@ -183,8 +183,8 @@ public class FinalTabDisplay extends VBox {
                                                     mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
                                                                                     pLevel, pAB);
                                                     Main.add(mMainTable);
-                                                    mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
-                                                    mDanceTables.add(mTempTable);
+                                                    //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
+                                                    //mDanceTables.add(mTempTable);
 						}
 					}
 					int labelNum = 1;

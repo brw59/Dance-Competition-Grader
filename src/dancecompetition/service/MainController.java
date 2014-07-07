@@ -214,13 +214,13 @@ public class MainController
       judgeNames = generateLabel(njudges, 50, judgesnames);
       couplePlace = generateLabel(ncouples, 25, places);
 
-      int layoutx = 365;
+      int layoutx = 50;
 
       //initialize the array of text fields. They have unique id's
       //and positioning.
       for (int x = 0; x < njudges; x++)
       {
-         int layouty = 50;
+         int layouty = 25;
 
          for (int y = 0; y < ncouples; y++)
          {
