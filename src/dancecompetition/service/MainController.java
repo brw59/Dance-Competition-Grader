@@ -379,7 +379,7 @@ public class MainController
       //and positioning.
       for (int x = 0; x < njudges; x++)
       {
-         int layouty = 50;
+         int layouty = 0;
 
          for (int y = 0; y < ncouples; y++)
          {
