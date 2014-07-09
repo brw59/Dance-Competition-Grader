@@ -483,11 +483,11 @@ public class MainController
     * @param event An on click event generated from the GUI by the user.
     */
    //@FXML
-   public void handleCalcButton(ActionEvent event, TextArea mCalculations)
+   public void handleCalcButton(Boolean isSingle, ActionEvent event, TextArea mCalculations)
    {
       String tempStyle = DanceStyle;
       String tempLevel = Level;
-      String tempAB = AB;
+      String tempAB = AB; // or number of dances for multi-dance
       String tempAge = Age;
       int tempJudges = NumJudges;
       int tempCouples = NumCouples;
@@ -504,9 +504,11 @@ public class MainController
       ArrayList toCheck = textBoxes;
 
       //Make sure errors and internal data are cleared
-      TextBoxParser.clearResult();
-      statusMSG.setText("");
-      statusMSG2.setText("");
+    if (isSingle) {
+        TextBoxParser.clearResult();
+        statusMSG.setText("");
+        statusMSG2.setText("");
+    }
 
       //Call error checking functions
       errorA = TextBoxParser.checkNumbers(toCheck, tempJudges, tempCouples);

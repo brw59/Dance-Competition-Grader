@@ -16,6 +16,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.print.*;
+import javafx.scene.Node;
+import javafx.scene.transform.Scale;
 
 import java.util.prefs.*;
 
@@ -49,6 +52,7 @@ extends Application
 	 private Menu mFile;
 	 private MenuItem menuSave;
 	 private MenuItem menuClear;
+         private MenuItem menuPrint;
 	 private MenuItem menuAbout;
 	 private MenuItem menuExit;
 	 private Stage mStage;
@@ -106,11 +110,12 @@ extends Application
 		//setting up the menuBar
 		menuSave = new MenuItem("Save");
 		menuClear = new MenuItem("Clear");
+                menuPrint = new MenuItem("Print");
 		menuExit = new MenuItem("Exit");
 		mHelp = new Menu("Help");
 		mFile = new Menu("File");
 		menuAbout = new MenuItem("About");
-		mFile.getItems().addAll(menuSave, menuClear, menuExit);
+		mFile.getItems().addAll(menuSave, menuClear, menuPrint, menuExit);
 		menuBar = new MenuBar();
 		mHelp.getItems().add(menuAbout);
 		menuBar.getMenus().addAll(mFile, mHelp);
@@ -135,6 +140,14 @@ extends Application
 			public void handle(ActionEvent e)
 			{
 				clear();
+			}
+		});
+                menuPrint.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
+		menuPrint.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent e)
+			{
+				print();
 			}
 		});
 		menuExit.setOnAction(new EventHandler<ActionEvent>()
@@ -219,12 +232,25 @@ extends Application
 	 */
 	public void saveDisplay()
 	{
-		if(singleSelected)
-			sTabDisplay.save();
+		if (singleSelected)
+                    sTabDisplay.save();
 		else			
-			mTabDisplay.save();
+                    mTabDisplay.save();
 	}
 	
+        /**
+	 * prints the results, just like it does when the info is
+	 * pasted
+	 */
+        public void print() {
+            if (singleSelected)
+                sfTabDisplay.print();
+            else			
+                mfTabDisplay.print();
+            
+        }
+    
+        
 	/**
 	 * starts up the GUI, This main is called from the Run class
 	 * @param args there should not be any at all! but if there is... no idea

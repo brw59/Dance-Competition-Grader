@@ -256,16 +256,14 @@ public class FinalTabDisplay extends VBox {
 		{
 			public void handle(ActionEvent event)
 			{
-                            if(single)
-                            {
+                            if(single) {
 				System.out.println("Calculate Final Scores Here");
-                                Main.get(0).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
+                                Main.get(0).handleCalcButton(single, event, mFinalInfoDisplay.getCalcBox());
                             }
-                            else{
-                                
-                                for(int i = 0; i < NumDances; i++){
+                            else {
+                                for (int i = 0; i < NumDances; i++){
                                     System.out.println("Calculate MultiDance Final Scores Here"); 
-                                    Main.get(i).handleCalcButton(event, mFinalInfoDisplay.getCalcBox());
+                                    Main.get(i).handleCalcButton(single, event, mFinalInfoDisplay.getCalcBox());
                                 }
                             }
                                 
@@ -389,6 +387,14 @@ public class FinalTabDisplay extends VBox {
 	public void save()
 	{
 		mFinalInfoDisplay.save();
+	}
+        
+        /**
+	 * print just calls the save function in the infoDisplay
+	 */
+	public void print()
+	{
+            mFinalInfoDisplay.print();
 	}
 	
 	/**

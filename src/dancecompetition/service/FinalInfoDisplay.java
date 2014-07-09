@@ -6,23 +6,6 @@
 
 package dancecompetition.service;
 
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -31,6 +14,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.prefs.Preferences;
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.transform.Scale;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -482,8 +488,32 @@ public class FinalInfoDisplay {
          System.out.println("Error occurred in saving the file");
       }
     
-}
-public TextArea getCalcBox(){
-    return mCalculations;
-}
+    }
+    
+   public void print()
+   {
+       /**
+        // whatever is in the mPreview box is what should be printed
+        Node node = new Node(mPreview.getText() + "\n\n");
+   
+        Printer printer = Printer.getDefaultPrinter();
+        PageLayout pageLayout = printer.createPageLayout(Paper.NA_LETTER, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
+        double scaleX = pageLayout.getPrintableWidth() / node.getBoundsInParent().getWidth();
+        double scaleY = pageLayout.getPrintableHeight() / node.getBoundsInParent().getHeight();
+        node.getTransforms().add(new Scale(scaleX, scaleY));
+ 
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+            boolean success = job.printPage(node);
+            if (success) {
+                job.endJob();
+            }
+        }
+        */
+       // temporarily do nothing
+   }
+   
+    public TextArea getCalcBox() {
+        return mCalculations;
+    }
 }

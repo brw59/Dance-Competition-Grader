@@ -21,7 +21,7 @@ public class FinalDanceTable extends GridPane{
     Iterator<Judge> it;
     private FinalTabDisplay mFinalTabDisplay;
         
-       public FinalDanceTable(int numJudges, int numDancers, FinalTabDisplay pFinalTabDisplay)
+    public FinalDanceTable(int numJudges, int numDancers, FinalTabDisplay pFinalTabDisplay)
     {
         mNumJudges = numJudges;
         mNumDancers = numDancers;
@@ -131,12 +131,12 @@ public class FinalDanceTable extends GridPane{
     	if (selected != -1)
     	{
     		if (selected == theJudges.size() - 1)
-    			mFinalTabDisplay.nextFocus();
+                    mFinalTabDisplay.nextFocus();
     		else
     		{
-    			Judge j = (Judge) theJudges.get(selected + 1);
-    			j.setFocus();
-    			hScrPos(selected + 1);
+                    Judge j = (Judge) theJudges.get(selected + 1);
+                    j.setFocus();
+                    hScrPos(selected + 1);
     		}	
     	}
     }
