@@ -129,40 +129,40 @@ extends Application
 		menuSave.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 		menuSave.setOnAction(new EventHandler<ActionEvent>()
 		{
-			public void handle(ActionEvent e)
-			{
-				saveDisplay();
-			}
+                    public void handle(ActionEvent e)
+                    {
+			saveDisplay();
+                    }
 		});
 		menuClear.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
 		menuClear.setOnAction(new EventHandler<ActionEvent>()
 		{
-			public void handle(ActionEvent e)
-			{
-				clear();
-			}
+                    public void handle(ActionEvent e)
+                    {
+			clear();
+                    }
 		});
                 menuPrint.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
 		menuPrint.setOnAction(new EventHandler<ActionEvent>()
 		{
-			public void handle(ActionEvent e)
-			{
-				print();
-			}
+                    public void handle(ActionEvent e)
+                    {
+			print();
+                    }
 		});
 		menuExit.setOnAction(new EventHandler<ActionEvent>()
 		{
-			public void handle(ActionEvent e)
-			{
-				close();
-			}
+                    public void handle(ActionEvent e)
+                    {
+			close();
+                    }
 		});
 		menuAbout.setOnAction(new EventHandler<ActionEvent>()
 		{
-			public void handle(ActionEvent e)
-			{
-				about();
-			}
+                    public void handle(ActionEvent e)
+                    {
+			about();
+                    }
 		});
 		
 		/*
@@ -186,13 +186,13 @@ extends Application
 		 * signal to let the publicWindow know that it needs to change as well
 		 */
 		sTab.setOnSelectionChanged(new EventHandler<Event>()
-				{
-					public void handle(Event e)
-					{
-						singleSelected = !singleSelected;
-						mPublicWindow.showTab(singleSelected);
-					}
-				});
+		{
+                    public void handle(Event e)
+                    {
+			singleSelected = !singleSelected;
+			mPublicWindow.showTab(singleSelected);
+                    }
+		});
 	   /*
 	    * makes it so that both windows will close when the primary
 	    * window closes
@@ -220,10 +220,10 @@ extends Application
 	 */
 	public void clear()
 	{
-		if (singleSelected)
-			sTabDisplay.clear();
-		else
-			mTabDisplay.clear();
+            if (singleSelected)
+    		sTabDisplay.clear();
+            else
+		mTabDisplay.clear();
 	}
 	
 	/**
@@ -232,10 +232,10 @@ extends Application
 	 */
 	public void saveDisplay()
 	{
-		if (singleSelected)
-                    sTabDisplay.save();
-		else			
-                    mTabDisplay.save();
+            if (singleSelected)
+                sTabDisplay.save();
+            else			
+                mTabDisplay.save();
 	}
 	
         /**

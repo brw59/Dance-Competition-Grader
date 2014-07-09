@@ -494,8 +494,9 @@ public class FinalInfoDisplay {
    {
        /**
         // whatever is in the mPreview box is what should be printed
-        Node node = new Node(mPreview.getText() + "\n\n");
-   
+        Node node = new Node();
+        // mPreview.getText() + "\n\n"
+        
         Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.NA_LETTER, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
         double scaleX = pageLayout.getPrintableWidth() / node.getBoundsInParent().getWidth();
@@ -509,7 +510,7 @@ public class FinalInfoDisplay {
                 job.endJob();
             }
         }
-        */
+        **/
        // temporarily do nothing
    }
    
