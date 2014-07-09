@@ -504,7 +504,7 @@ public class MainController
       ArrayList toCheck = textBoxes;
 
       //Make sure errors and internal data are cleared
-    if (first == 0) {
+    if (first != 0) {
         TextBoxParser.clearResult();
         statusMSG.setText("");
         statusMSG2.setText("");

@@ -123,7 +123,7 @@ public class DisplayStringBuilder {
             //If the place has a number, display a number
             if (pCouple.getPlaces(i) != 0)
             {
-               output += String.format("%6d|", pCouple.getPlaces(i));
+               output += (" " + String.format("%6d|", pCouple.getPlaces(i)));
             } //Display a single dash if zero before placement
             else if (! placed)
             {
@@ -131,7 +131,7 @@ public class DisplayStringBuilder {
             } //Display a solid line if zero after placement
             else
             {
-               output += "――――――|";
+               output += "----|";
             }
 
             //This is the old obfuscated (but one line) version of this line
@@ -169,6 +169,10 @@ public class DisplayStringBuilder {
 
       //The first part of the table must be indented 12 spaces
       output += "\n            ";
+      for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+      {
+          output += "   ";
+      }
 
       //The judges are separated by letter
       for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
@@ -192,11 +196,11 @@ public class DisplayStringBuilder {
          output += "  ";
       }
 
-      output += "―";
+      output += "-----";
 
       //Plus a row to divide the header from the rest of the table.
       for (int i = 0; i < mData.getHeat().getNumCouples(); i++)
-         output += ("―――――――");
+         output += ("------");
 
       //Now the table starts
       output += "\n";
@@ -216,16 +220,16 @@ public class DisplayStringBuilder {
       //As well as spacers for the judge columns
       for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
       {
-         output += "  ";
+         output += "    ";
       }
 
       //The first NM column just has the left part of the column border
-      output += "   |";
+      output += "     ";
 
       //Then print the NMs
       for (int i = 0; i < mData.getHeat().getNumCouples(); i++)
       {
-         output += (mData.getNM(i) ? "    NM|" : "      |");
+         output += (mData.getNM(i) ? "|    NM|" : "        ");
       }
 
       //Followed by two spacing lines.                        
