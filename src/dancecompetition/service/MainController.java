@@ -483,7 +483,7 @@ public class MainController
     * @param event An on click event generated from the GUI by the user.
     */
    //@FXML
-   public void handleCalcButton(Boolean isSingle, ActionEvent event, TextArea mCalculations)
+   public void handleCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations)
    {
       String tempStyle = DanceStyle;
       String tempLevel = Level;
@@ -504,7 +504,7 @@ public class MainController
       ArrayList toCheck = textBoxes;
 
       //Make sure errors and internal data are cleared
-    if (isSingle) {
+    if (first == 0) {
         TextBoxParser.clearResult();
         statusMSG.setText("");
         statusMSG2.setText("");
@@ -531,7 +531,7 @@ public class MainController
       output.setEditable(false);
       SingleFinalLite.getInstance().getData().loadCouples(result);
       SingleFinalLite.getInstance().implementRules();
-      output.setText(new DisplayStringBuilder().buildTable(
+      output.setText(output.getText() + new DisplayStringBuilder().buildTable(
             SingleFinalLite.getInstance().getData()));
    }
 
