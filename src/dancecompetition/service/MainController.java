@@ -531,7 +531,7 @@ public class MainController
       output.setEditable(false);
       SingleFinalLite.getInstance().getData().loadCouples(result);
       SingleFinalLite.getInstance().implementRules();
-      output.setText(output.getText() + new DisplayStringBuilder().buildTable(
+      output.setText(output.getText() + new DisplayStringBuilder().buildTable(first,
             SingleFinalLite.getInstance().getData()));
    }
 
@@ -632,7 +632,7 @@ public class MainController
 
          File tempPrint = new File("tempPrint.sfl");
          FileWriter fw = new FileWriter(tempPrint, true);
-         fw.write(new DisplayStringBuilder().buildTable(
+         fw.write(new DisplayStringBuilder().buildTable(0,
                SingleFinalLite.getInstance().getData()));
          fw.close();
 
