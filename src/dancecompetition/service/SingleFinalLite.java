@@ -203,7 +203,7 @@ public class SingleFinalLite
          }
 
          //Write the table to the file
-         fw.write(new DisplayStringBuilder().buildTable(mData));
+         fw.write(new DisplayStringBuilder().buildTable(0, mData));
 
          //Close the file, we are done with it.
          fw.close();
@@ -224,7 +224,7 @@ public class SingleFinalLite
     */
    public void display()
    {
-      System.out.print(new DisplayStringBuilder().buildTable(mData));
+      System.out.print(new DisplayStringBuilder().buildTable(0, mData));
    }
 
    /**

@@ -156,12 +156,17 @@ public class DisplayStringBuilder {
     * 
     * @return String representing fully calculated table.
     */
-   public String buildTable(Data pData)
+   public String buildTable(int first, Data pData)
    {
       mData = pData;
-
-      //The first few lines are the header from the Heat object
-      String output = buildHeader();
+        String output = "";
+      
+      // "first" makes the header only appear when it's the first calculation
+      if (first == 0)
+      {
+          // The first few lines are the header from the Heat object
+          output = buildHeader();
+      }
 
       //Between the header and the main table, we need to include a ranking 
       //of the couples
