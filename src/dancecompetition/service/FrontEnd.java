@@ -172,14 +172,18 @@ extends Application
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(menuBar);
 		borderPane.setCenter(tabPane);
-		root.getChildren().add(borderPane);
+                
+                ScrollPane scr = new ScrollPane();
+                scr.setContent(borderPane);
+                scr.setPrefSize(800, 800);
+		root.getChildren().add(scr);
 		
-		Scene mScene = new Scene(root, 850, 875);
+		Scene mScene = new Scene(root, 800, 800);
 		mScene.setFill(Color.LIGHTGREY);
 	
 		pStage.setScene(mScene);
 		
-		pStage.setResizable(true);
+		pStage.setResizable(false);
 		
 		/*
 		 * this catches a change on the single tab.  If it changes it will send a 
