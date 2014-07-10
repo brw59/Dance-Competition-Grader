@@ -186,7 +186,7 @@ extends Application
 	
 		pStage.setScene(mScene);
 		
-		pStage.setResizable(true);
+		pStage.setResizable(false);
 		
 		/*
 		 * this catches a change on the single tab.  If it changes it will send a 
