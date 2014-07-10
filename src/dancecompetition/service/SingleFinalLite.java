@@ -71,7 +71,7 @@ public class SingleFinalLite
     * The member printer object, which is not needed, but may be used eventually
     * in later versions of the program.
     */
-   private Printer mPrinter = new Printer("");
+//   private Printer mPrinter = new Printer("");
 
    /**
     * Provides access to the member ruler object

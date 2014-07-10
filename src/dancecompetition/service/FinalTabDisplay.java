@@ -394,7 +394,7 @@ public class FinalTabDisplay extends VBox {
 	 */
 	public void print()
 	{
-            mFinalInfoDisplay.print();
+            mFinalInfoDisplay.printer();
 	}
 	
 	/**

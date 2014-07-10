@@ -9,34 +9,33 @@ package dancecompetition.service;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.prefs.Preferences;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
-import javafx.print.PageLayout;
-import javafx.print.PageOrientation;
-import javafx.print.Paper;
-import javafx.print.Printer;
-import javafx.print.PrinterJob;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.transform.Scale;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.Copies;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.io.ByteArrayInputStream;
 
 /**
  *
@@ -490,31 +489,47 @@ public class FinalInfoDisplay {
     
     }
     
-   public void print()
+   public void printer()
    {
-       /**
-        // whatever is in the mPreview box is what should be printed
-        Node node = new Node();
-        // mPreview.getText() + "\n\n"
-        
-        Printer printer = Printer.getDefaultPrinter();
-        PageLayout pageLayout = printer.createPageLayout(Paper.NA_LETTER, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
-        double scaleX = pageLayout.getPrintableWidth() / node.getBoundsInParent().getWidth();
-        double scaleY = pageLayout.getPrintableHeight() / node.getBoundsInParent().getHeight();
-        node.getTransforms().add(new Scale(scaleX, scaleY));
- 
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null) {
-            boolean success = job.printPage(node);
-            if (success) {
-                job.endJob();
-            }
-        }
-        **/
-       // temporarily do nothing
-   }
-   
-    public TextArea getCalcBox() {
+       
+    String defaultPrinter = PrintServiceLookup.lookupDefaultPrintService().getName();
+    System.out.println("Default printer: " + defaultPrinter);
+    PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+
+    // prints the famous hello world! plus a form feed
+    InputStream is = null;
+
+
+       try {
+           is = new ByteArrayInputStream((mCalculations.getText() + "\f").getBytes("UTF8"));
+       } catch (UnsupportedEncodingException ex) {
+           Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    PrintRequestAttributeSet  pras = new HashPrintRequestAttributeSet();
+    pras.add(new Copies(1));
+
+    DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+    Doc doc = new SimpleDoc(is, flavor, null);
+    DocPrintJob job = service.createPrintJob();
+
+    dancecompetition.system.Printer pjw = new dancecompetition.system.Printer(job);
+       try {
+           job.print(doc, pras);
+       } catch (PrintException ex) {
+           Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    pjw.waitForDone();
+       try {
+           is.close();
+       } catch (IOException ex) {
+           Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
+       }
+  }
+    
+       public TextArea getCalcBox() {
         return mCalculations;
     }
 }
+       
+  
