@@ -171,12 +171,15 @@ extends Application
 		
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(menuBar);
-		borderPane.setCenter(tabPane);
-                
                 ScrollPane scr = new ScrollPane();
-                scr.setContent(borderPane);
+                scr.setContent(tabPane);
                 scr.setPrefSize(800, 800);
-		root.getChildren().add(scr);
+		borderPane.setCenter(scr);
+                
+                //ScrollPane scr = new ScrollPane();
+                //scr.setContent(borderPane);
+                //scr.setPrefSize(800, 800);
+		root.getChildren().add(borderPane);
 		
 		Scene mScene = new Scene(root, 800, 800);
 		mScene.setFill(Color.LIGHTGREY);
