@@ -6,8 +6,12 @@
 
 package dancecompetition.service;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +19,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -32,10 +38,6 @@ import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.Copies;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.io.ByteArrayInputStream;
 
 /**
  *
@@ -491,7 +493,7 @@ public class FinalInfoDisplay {
     
    public void printer()
    {
-       
+       /**
     String defaultPrinter = PrintServiceLookup.lookupDefaultPrintService().getName();
     System.out.println("Default printer: " + defaultPrinter);
     PrintService service = PrintServiceLookup.lookupDefaultPrintService();
@@ -525,11 +527,21 @@ public class FinalInfoDisplay {
        } catch (IOException ex) {
            Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
        }
+       **/
+       Node temp = new TextArea(mCalculations.getText()); 
+     //  temp.setContent(mCalculations.getText());
+      // temp.
+       PrinterJob job = PrinterJob.createPrinterJob();
+       if (job != null) {
+           boolean success = job.printPage(temp);
+            if (success) {
+                job.endJob();
+            }
+       }
+       
   }
     
        public TextArea getCalcBox() {
         return mCalculations;
     }
 }
-       
-  
