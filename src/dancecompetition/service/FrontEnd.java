@@ -200,6 +200,16 @@ extends Application
 			mPublicWindow.showTab(singleSelected);
                     }
 		});
+          
+                sfTab.setOnSelectionChanged(new EventHandler<Event>()
+		{
+                    public void handle(Event e)
+                    {
+			singleSelected = !singleSelected;
+			mPublicWindow.showTab(singleSelected);
+                    }
+		});
+            
 	   /*
 	    * makes it so that both windows will close when the primary
 	    * window closes
