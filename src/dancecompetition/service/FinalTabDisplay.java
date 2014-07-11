@@ -83,6 +83,11 @@ public class FinalTabDisplay extends VBox {
 	private List<TextField> labelTexts;
 	
 	private Stage mStage;
+        
+        private DisplayStringBuilder display;
+        
+        private Placement place;
+        private List<Placement> placements = new ArrayList<Placement>();
 	/***
          * This is a constructor for final dance calculations tabs
          * @param single - tells if it is a single dance or multi dance
@@ -266,6 +271,14 @@ public class FinalTabDisplay extends VBox {
                                 for (int i = 0; i < NumDances; i++){
                                     System.out.println("Calculate MultiDance Final Scores Here"); 
                                     Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
+                                    Display = Main.get(i).display;
+                                    int pCouples = Integer.parseInt(allInfo.get(4));
+                                    
+                                    for(int j = 0; j < pCouples; j++){
+                                        place = new Placement(Display.placements.get(j).getScore(),
+                                                Display.placements.get(j).getDanceNum());
+                                        placements.add(place);
+                                    }
                                 }
                             }
                                 
