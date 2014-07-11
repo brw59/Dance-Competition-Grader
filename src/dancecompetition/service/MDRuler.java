@@ -30,15 +30,14 @@ public class MDRuler {
 
    private int numCouples;
     private int numDances;
-   public List<Placement> placement = new ArrayList<Placement>();
    private MultiDanceTable MDTable;
 
-    /*public MDRuler(int pNumCouples, int pNumDances)
+    public MDRuler(int pNumCouples, int pNumDances)
     {
 	numCouples = pNumCouples;
 	numDances = pNumDances; 
 	MDTable = new MultiDanceTable(pNumCouples);
-    }*/
+    }
 
     /**
     * The interface that must be implemented in order for the rules to be applied.

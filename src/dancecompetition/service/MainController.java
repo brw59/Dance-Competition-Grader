@@ -176,6 +176,8 @@ public class MainController
    private String DanceStyle;
    private String Level;
    private List<TextField> danceName;
+   public List<Placement> placement;
+   public DisplayStringBuilder display;
    /**
     * handleAcceptButton
     *   pulls values from the choice boxes, calls setHeat() and generateTable()
@@ -535,14 +537,17 @@ public class MainController
       output.setEditable(false);
       SingleFinalLite.getInstance().getData().loadCouples(result);
       SingleFinalLite.getInstance().implementRules();
+      
       if(isSingle)
       {
+        
         output.setText(output.getText() + new DisplayStringBuilder().buildTable(first,
             SingleFinalLite.getInstance().getData()));
       }
       else
       {
-          output.setText(output.getText() + new DisplayStringBuilder().multiBuildTable(first,
+          display = new DisplayStringBuilder();
+          output.setText(output.getText() + display.multiBuildTable(first,
             SingleFinalLite.getInstance().getData(), danceName));
       }
    }

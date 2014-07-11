@@ -22,8 +22,8 @@ public class DisplayStringBuilder {
     * Data Object
     */
    Data mData;
-   Placement place;
-   public List<Placement> placement = new ArrayList<Placement>();
+   public Placement place;
+   public List<Placement> placements = new ArrayList<Placement>();
 
    /**
     * Builds a string to be displayed as the header of the calculated results.
@@ -59,7 +59,7 @@ public class DisplayStringBuilder {
          output += ("" + current.getResult() + ": Couple " +
          current.getCoupleNum() + "\n");
          place = new Placement(current.getResult(), current.getCoupleNum());
-         placement.add(place);
+         placements.add(place);
       }
 //    output += placement.get(0).getScore();
 //    output += placement.get(0).getDanceNum();  
@@ -247,7 +247,7 @@ public class DisplayStringBuilder {
    public String multiBuildTable(int first, Data pData, List<TextField> danceName)
    {
       mData = pData;
-        String output = "";
+      String output = "";
       
       // "first" makes the header only appear when it's the first calculation
       if (first == 0)

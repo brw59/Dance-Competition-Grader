@@ -6,6 +6,8 @@ import static dancecompetition.system.ResourceGetter.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -66,6 +68,7 @@ public class SingleFinalLite
     * for this, so that any number of rules could be created.
     */
    private Ruler mRuler = new Ruler();
+   
 
    /**
     * The member printer object, which is not needed, but may be used eventually
@@ -81,6 +84,8 @@ public class SingleFinalLite
       mRuler.implementRules(mData);
    }
 
+   public void implementMDRules(){
+   }
    /**
     * @param args the command line arguments
     */
