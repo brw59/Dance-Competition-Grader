@@ -11,6 +11,7 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -174,6 +175,7 @@ public class MainController
    private String AB;
    private String DanceStyle;
    private String Level;
+   private List<TextField> danceName;
    /**
     * handleAcceptButton
     *   pulls values from the choice boxes, calls setHeat() and generateTable()
@@ -483,7 +485,8 @@ public class MainController
     * @param event An on click event generated from the GUI by the user.
     */
    //@FXML
-   public void handleCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations)
+   public void handleCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations,
+                                List<TextField> dancename)
    {
       String tempStyle = DanceStyle;
       String tempLevel = Level;
@@ -491,6 +494,7 @@ public class MainController
       String tempAge = Age;
       int tempJudges = NumJudges;
       int tempCouples = NumCouples;
+      List<TextField> danceName = dancename;
       output = mCalculations;
       SingleFinalLite.getInstance().getData()
                      .setHeat(tempAge, tempLevel, tempStyle, tempJudges,
@@ -531,8 +535,16 @@ public class MainController
       output.setEditable(false);
       SingleFinalLite.getInstance().getData().loadCouples(result);
       SingleFinalLite.getInstance().implementRules();
-      output.setText(output.getText() + new DisplayStringBuilder().buildTable(first,
+      if(isSingle)
+      {
+        output.setText(output.getText() + new DisplayStringBuilder().buildTable(first,
             SingleFinalLite.getInstance().getData()));
+      }
+      else
+      {
+          output.setText(output.getText() + new DisplayStringBuilder().multiBuildTable(first,
+            SingleFinalLite.getInstance().getData(), danceName));
+      }
    }
 
    /**

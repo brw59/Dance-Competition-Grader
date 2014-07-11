@@ -74,8 +74,10 @@ public class FinalTabDisplay extends VBox {
 	
 	//attempting to add this here so that i can get the size of it later on
 	private HBox tempHbox;
-	
-	//
+        
+	private DisplayStringBuilder Display;
+        
+	//This is where the MultiDance names are held
 	private List<TextField> labelTexts;
 	
 	private Stage mStage;
@@ -168,9 +170,7 @@ public class FinalTabDisplay extends VBox {
                                             mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
                                                     pLevel, pAB);
                                             Main.add(mMainTable);
-						//mDanceTables = new ArrayList<FinalDanceTable>(1);
-                                            //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
-						//mDanceTables.add(mMainTable);
+						
 					}
 					else
 					{
@@ -183,8 +183,6 @@ public class FinalTabDisplay extends VBox {
                                                 mMainTable = new MainController(pJudges, pCouples, pAge, pDancestyle,
                                                                                 pLevel, pAB);
                                                 Main.add(mMainTable);
-                                                //mTempTable = new FinalDanceTable(pJudges, pCouples, mFinalTabDisplay);
-                                                //mDanceTables.add(mTempTable);
                                             }
 					}
 					int labelNum = 1;
@@ -258,13 +256,16 @@ public class FinalTabDisplay extends VBox {
 			{
                             if(single) {
 				System.out.println("Calculate Final Scores Here");
-                                Main.get(0).handleCalcButton(0, single, event, mFinalInfoDisplay.getCalcBox());
+                                Main.get(0).handleCalcButton(0, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
                             }
                             else {
                                 for (int i = 0; i < NumDances; i++){
                                     System.out.println("Calculate MultiDance Final Scores Here"); 
-                                    Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox());
+                                    Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
                                 }
+                                //System.out.println(Display.placement.size());
+                                //System.out.println(Display.placement.get(0).getScore());
+                                //System.out.println(Display.placement.get(0).getDanceNum());
                             }
                                 
 			}
