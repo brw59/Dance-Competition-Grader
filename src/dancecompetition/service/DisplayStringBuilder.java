@@ -127,7 +127,7 @@ public class DisplayStringBuilder {
             } //Display a single dash if zero before placement
             else if (! placed)
             {
-               output += "     -|";
+               output += "      -|";
             } //Display a solid line if zero after placement
             else
             {
@@ -173,10 +173,10 @@ public class DisplayStringBuilder {
       output += buildPlacments(mData.getCouples());
 
       //The first part of the table must be indented 12 spaces
-      output += "\n            ";
+      output += "\n              ";
       for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
       {
-          output += "   ";
+          output += "  ";
       }
 
       //The judges are separated by letter
