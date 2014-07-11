@@ -75,6 +75,8 @@ public class FinalTabDisplay extends VBox {
 	//attempting to add this here so that i can get the size of it later on
 	private HBox tempHbox;
         
+        private HBox newtempBox;
+        
 	private DisplayStringBuilder Display;
         
 	//This is where the MultiDance names are held
@@ -192,9 +194,11 @@ public class FinalTabDisplay extends VBox {
 					 * back over
 					 */
 					if (single){
-                                            rightTop.getChildren().add(Main.get(0).judgesBox);
-                                            rightTop.getChildren().add(Main.get(0).mainarea);
-                                            rightTop.getChildren().add(Main.get(0).placementBox);
+                                            newtempBox = new HBox();
+                                            rightTop.getChildren().addAll(Main.get(0).judgesBox); 
+                                            newtempBox.getChildren().addAll(Main.get(0).placementBox, Main.get(0).mainarea);
+                                            rightTop.getChildren().add(newtempBox);
+                                           
                                         }
 						
 					else
@@ -223,10 +227,10 @@ public class FinalTabDisplay extends VBox {
                                                     tempHbox.setMargin(tempLabel, new Insets(10));
                                                     tempHbox.setMargin(tempTextField, new Insets(10));
                                                     rightTop.getChildren().add(tempHbox);
-                                                    rightTop.getChildren().add(Main.get(i).judgesBox);
-                                                    rightTop.getChildren().add(Main.get(i).mainarea);
-                                                    rightTop.getChildren().add(Main.get(i).placementBox);
-                                                    //rightTop.getChildren().add(dt);
+                                                    newtempBox = new HBox();
+                                                    rightTop.getChildren().addAll(Main.get(i).judgesBox); 
+                                                    newtempBox.getChildren().addAll(Main.get(i).placementBox, Main.get(i).mainarea);
+                                                    rightTop.getChildren().add(newtempBox);
 						}
 					}
 					scr.setContent(rightTop);
@@ -263,9 +267,6 @@ public class FinalTabDisplay extends VBox {
                                     System.out.println("Calculate MultiDance Final Scores Here"); 
                                     Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
                                 }
-                                //System.out.println(Display.placement.size());
-                                //System.out.println(Display.placement.get(0).getScore());
-                                //System.out.println(Display.placement.get(0).getDanceNum());
                             }
                                 
 			}
