@@ -197,6 +197,7 @@ extends Application
                     public void handle(Event e)
                     {
 			singleSelected = !singleSelected;
+    //                    finalSelected = false;
 			mPublicWindow.showTab(singleSelected);
                     }
 		});
