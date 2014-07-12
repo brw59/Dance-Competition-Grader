@@ -561,10 +561,10 @@ public class MainController
    @FXML
    public void handleClear(ActionEvent event)
    {
-      dance.getSelectionModel().clearAndSelect(0);
-      age.getSelectionModel().clearAndSelect(0);
-      level.getSelectionModel().clearAndSelect(0);
-      ab.getSelectionModel().clearAndSelect(0);
+//      dance.getSelectionModel().clearAndSelect(0);
+  //    age.getSelectionModel().clearAndSelect(0);
+    //  level.getSelectionModel().clearAndSelect(0);
+    //  ab.getSelectionModel().clearAndSelect(0);
       mainarea.getChildren().removeAll(textBoxes);
       judgesBox.getChildren().removeAll(judgeNames);
       placementBox.getChildren().removeAll(couplePlace);

@@ -441,7 +441,7 @@ public class FinalInfoDisplay {
    public void clear()
    {
       mCalculations.clear();
-      mPreview.clear();
+      //mPreview.clear();
    }
 
    /**
