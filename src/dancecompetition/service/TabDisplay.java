@@ -695,4 +695,12 @@ extends VBox
     	}
     	
     };
+    
+        /**
+	* print just calls the save function in the infoDisplay
+	*/
+	public void print()
+	{
+            mInfoDisplay.printer();
+	}
 }

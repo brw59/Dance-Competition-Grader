@@ -25,6 +25,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.prefs.Preferences;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 
 /**
  * This class displays the information made from calculations by the
@@ -476,4 +478,54 @@ class InfoDisplay
          System.out.println("Error occurred in saving the file");
       }
    }
+   
+    public void printer()
+   {
+       /**
+    String defaultPrinter = PrintServiceLookup.lookupDefaultPrintService().getName();
+    System.out.println("Default printer: " + defaultPrinter);
+    PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+
+    // prints the famous hello world! plus a form feed
+    InputStream is = null;
+
+
+       try {
+           is = new ByteArrayInputStream((mCalculations.getText() + "\f").getBytes("UTF8"));
+       } catch (UnsupportedEncodingException ex) {
+           Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    PrintRequestAttributeSet  pras = new HashPrintRequestAttributeSet();
+    pras.add(new Copies(1));
+
+    DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+    Doc doc = new SimpleDoc(is, flavor, null);
+    DocPrintJob job = service.createPrintJob();
+
+    dancecompetition.system.Printer pjw = new dancecompetition.system.Printer(job);
+       try {
+           job.print(doc, pras);
+       } catch (PrintException ex) {
+           Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    pjw.waitForDone();
+       try {
+           is.close();
+       } catch (IOException ex) {
+           Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       **/
+       Node temp = new TextArea(mCalculations.getText()); 
+     //  temp.setContent(mCalculations.getText());
+      // temp.
+       PrinterJob job = PrinterJob.createPrinterJob();
+       if (job != null) {
+           boolean success = job.printPage(temp);
+            if (success) {
+                job.endJob();
+            }
+       }
+       
+    }
 }

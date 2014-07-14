@@ -48,6 +48,7 @@ extends Application
          private FinalTabDisplay mfTabDisplay;
 	 private MenuBar menuBar;
 	 private boolean singleSelected;
+         private boolean finalSelected;
 	 private Menu mHelp;
 	 private Menu mFile;
 	 private MenuItem menuSave;
@@ -196,21 +197,39 @@ extends Application
 		{
                     public void handle(Event e)
                     {
-			singleSelected = !singleSelected;
-    //                    finalSelected = false;
+			singleSelected = true;
+                        finalSelected = false;
 			mPublicWindow.showTab(singleSelected);
                     }
 		});
           
-                sfTab.setOnSelectionChanged(new EventHandler<Event>()
+                mTab.setOnSelectionChanged(new EventHandler<Event>()
 		{
                     public void handle(Event e)
                     {
-			singleSelected = !singleSelected;
-			mPublicWindow.showTab(singleSelected);
+			singleSelected = false;
+                        finalSelected = false;
                     }
 		});
-            
+                
+		sfTab.setOnSelectionChanged(new EventHandler<Event>()
+		{
+                    public void handle(Event e)
+                    {
+			singleSelected = true;
+                        finalSelected = true;
+                    }
+		});
+          
+                mfTab.setOnSelectionChanged(new EventHandler<Event>()
+		{
+                    public void handle(Event e)
+                    {
+			singleSelected = false;
+                        finalSelected = true;
+                    }
+		});
+                
 	   /*
 	    * makes it so that both windows will close when the primary
 	    * window closes
@@ -239,9 +258,25 @@ extends Application
 	public void clear()
 	{
             if (singleSelected)
-    		sTabDisplay.clear();
+            {
+                if (finalSelected)
+                {
+                    sfTabDisplay.clear();
+                }
+                else
+                    sTabDisplay.clear();
+            }
             else
-		mTabDisplay.clear();
+            {
+                if (finalSelected)
+                {
+                    mfTabDisplay.clear();
+                }
+                else
+                {
+                    mTabDisplay.clear();
+                }
+            }
 	}
 	
 	/**
@@ -251,9 +286,25 @@ extends Application
 	public void saveDisplay()
 	{
             if (singleSelected)
-                sTabDisplay.save();
-            else			
-                mTabDisplay.save();
+            {
+                if (finalSelected)
+                {
+                    sfTabDisplay.save();
+                }
+                else
+                    sTabDisplay.save();
+            }
+            else
+            {
+                if (finalSelected)
+                {
+                    mfTabDisplay.save();
+                }
+                else
+                {
+                    mTabDisplay.save();
+                }
+            }
 	}
 	
         /**
@@ -262,9 +313,28 @@ extends Application
 	 */
         public void print() {
             if (singleSelected)
-                sfTabDisplay.print();
-            else			
-                mfTabDisplay.print();
+            {
+                if (finalSelected)
+                {
+                    sfTabDisplay.print();
+                }
+                else
+                {
+                    sTabDisplay.print();
+                }
+            }
+            else
+            {
+                if (finalSelected)
+                {
+                    mfTabDisplay.save();
+                //    mfTabDisplay.print();
+                }
+                else
+                {
+                    mTabDisplay.print();
+                }
+            }
             
         }
     
