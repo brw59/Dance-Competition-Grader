@@ -86,10 +86,12 @@ public class MDRuler {
     
    private void checkTies(int [] totals)
    {
-       List<Integer> [] tTotals = new ArrayList [numCouples * numDances];
-
-       for(int i = 0; i < numCouples; i++)
+       List<Integer> [] tTotals = new ArrayList[numCouples * numDances];
+       for(int i = 0; i < numCouples; i++){
+           System.out.println(totals[i]);
+           System.out.println(position[i]);
 	   tTotals[totals[i]].add(position[i]);
+       }
 
        for(int i = 0; i <= numCouples * numDances; i++)
        {
@@ -190,11 +192,12 @@ public class MDRuler {
 
 	public void computeTotals(Ruler [] pRuler)
 	{
-	    for (int i = 0; i < numCouples; i++)
+	    for (int i = 0; i < pRuler.length; i++)
 	    {
 		Couple [] tCouples = pRuler[i].getData().getCouples();
-		for(int j = 0; j <= numCouples; j++)
-		    totals[j] += tCouples[j].getResult();
+		for(int j = 0; j < numCouples; j++){
+		    totals[j] = tCouples[j].getResult();
+                }
             }
 	}
 

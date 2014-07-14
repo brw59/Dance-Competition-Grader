@@ -178,6 +178,7 @@ public class MainController
    private List<TextField> danceName;
    public List<Placement> placement;
    public DisplayStringBuilder display;
+   private MDRuler mdRuler;
    /**
     * handleAcceptButton
     *   pulls values from the choice boxes, calls setHeat() and generateTable()
@@ -552,6 +553,75 @@ public class MainController
       }
    }
 
+   
+   public void handleMiltiCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations,
+                                       List<TextField> dancename, MDRuler mdRule, int numDances, Ruler [] Rules)
+   {
+      String tempStyle = DanceStyle;
+      String tempLevel = Level;
+      String tempAB = AB; // or number of dances for multi-dance
+      String tempAge = Age;
+      int NumDances = numDances;
+      int tempJudges = NumJudges;
+      int tempCouples = NumCouples;
+      Ruler [] rules = Rules;
+      
+      mdRuler = mdRule;
+      List<TextField> danceName = dancename;
+      output = mCalculations;
+      /*SingleFinalLite.getInstance().getData()
+                     .setHeat(tempAge, tempLevel, tempStyle, tempJudges,
+         tempCouples, tempAB);*/
+       
+      //Setup needed data
+      ArrayList<Integer> result;
+      boolean errorA;
+      boolean errorB;
+      boolean errorC;
+      ArrayList toCheck = textBoxes;
+
+      //Make sure errors and internal data are cleared
+    if (first != 0) {
+        TextBoxParser.clearResult();
+        statusMSG.setText("");
+        statusMSG2.setText("");
+    }
+
+      //Call error checking functions
+      errorA = TextBoxParser.checkNumbers(toCheck, tempJudges, tempCouples);
+      errorB = TextBoxParser.checkBounds(toCheck, tempJudges, tempCouples);
+      errorC = ! TextBoxParser.validateCoupleNumbers(toCheck, tempJudges,
+            tempCouples);
+
+      if (errorA || errorB || errorC)
+      {
+         mainarea.getChildren().removeAll(textBoxes);
+         textBoxes = TextBoxParser.getParsedBoxes();
+         mainarea.getChildren().addAll(textBoxes);
+         statusMSG.setText("Check the values entered above!");
+
+         return;
+      }
+
+      //output the result int the output field
+      result = TextBoxParser.getResult();
+      output.setEditable(false);
+      SingleFinalLite.getInstance().implementMDRules(rules, mdRuler);
+      
+      
+      if(isSingle)
+      {
+        
+        output.setText(output.getText() + new DisplayStringBuilder().buildTable(first,
+            SingleFinalLite.getInstance().getData()));
+      }
+      else
+      {
+          display = new DisplayStringBuilder();
+          output.setText(output.getText() + display.multiBuildTable(first,
+            SingleFinalLite.getInstance().getData(), danceName));
+      }
+   }
    /**
     * Clears the dynamic contents of the GUI. does not clear the number of
     * judges or couples.

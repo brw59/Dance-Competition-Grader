@@ -68,6 +68,8 @@ public class SingleFinalLite
     * for this, so that any number of rules could be created.
     */
    private Ruler mRuler = new Ruler();
+   //private MDRuler mdRuler;
+   
    
 
    /**
@@ -84,7 +86,9 @@ public class SingleFinalLite
       mRuler.implementRules(mData);
    }
 
-   public void implementMDRules(){
+   public void implementMDRules(Ruler [] rules, MDRuler MultiRule){
+       
+       MultiRule.implementRules(rules);
    }
    /**
     * @param args the command line arguments
@@ -176,6 +180,9 @@ public class SingleFinalLite
       return mData;
    }
 
+   public Ruler getRuler(){
+       return mRuler;
+   }
    /**
     * This will append the current heat information to a specified text file.
     * If the name of the text file has not been specified previously,

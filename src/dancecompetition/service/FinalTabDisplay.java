@@ -66,6 +66,7 @@ public class FinalTabDisplay extends VBox {
 	private Button clear;
         
         private int NumDances;
+        private int NumCouples;
 	
 	//The container used to pass information around
 	private List<String> allInfo;
@@ -88,6 +89,9 @@ public class FinalTabDisplay extends VBox {
         
         private Placement place;
         private List<Placement> placements = new ArrayList<Placement>();
+        
+        private MDRuler mdRuler;
+        private Ruler [] RulerArray;
 	/***
          * This is a constructor for final dance calculations tabs
          * @param single - tells if it is a single dance or multi dance
@@ -182,7 +186,9 @@ public class FinalTabDisplay extends VBox {
 					else
 					{
                                             int nDances = Integer.parseInt(allInfo.get(5));
+                                            NumCouples = Integer.parseInt(allInfo.get(4));
                                             NumDances = nDances;
+                                           
                                             Main = new ArrayList<MainController>(nDances);
                                             mDanceTables = new ArrayList<FinalDanceTable>(nDances);
                                             for(int i = 0; i < nDances; i++)
@@ -240,12 +246,7 @@ public class FinalTabDisplay extends VBox {
 					}
 					scr.setContent(rightTop);
 					genScore.visibleProperty().set(true);
-                                        if(single)
-                                        {  
-                                        }
-                                        else {
-                                            mDanceTables.get(0).setFocus();
-                                        }
+                                        
                                 }
 				else
 				{
@@ -268,18 +269,22 @@ public class FinalTabDisplay extends VBox {
                                 Main.get(0).handleCalcButton(0, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
                             }
                             else {
+                                RulerArray = new Ruler[NumDances];
                                 for (int i = 0; i < NumDances; i++){
                                     System.out.println("Calculate MultiDance Final Scores Here"); 
                                     Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
                                     Display = Main.get(i).display;
+                                    RulerArray[i] = SingleFinalLite.getInstance().getRuler();
                                     int pCouples = Integer.parseInt(allInfo.get(4));
-                                    
                                     for(int j = 0; j < pCouples; j++){
                                         place = new Placement(Display.placements.get(j).getScore(),
                                                 Display.placements.get(j).getDanceNum());
                                         placements.add(place);
                                     }
                                 }
+                                mdRuler = new MDRuler(NumCouples, NumDances);
+                                Main.get(0).handleMiltiCalcButton(0, single, event, mFinalInfoDisplay.getCalcBox(),
+                                       labelTexts, mdRuler, NumDances, RulerArray);
                             }
                                 
 			}
