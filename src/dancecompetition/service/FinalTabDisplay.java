@@ -240,12 +240,6 @@ public class FinalTabDisplay extends VBox {
 					}
 					scr.setContent(rightTop);
 					genScore.visibleProperty().set(true);
-                                        if(single)
-                                        {  
-                                        }
-                                        else {
-                                            mDanceTables.get(0).setFocus();
-                                        }
                                 }
 				else
 				{
