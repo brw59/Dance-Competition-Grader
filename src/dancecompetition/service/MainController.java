@@ -566,9 +566,9 @@ public class MainController
     //  level.getSelectionModel().clearAndSelect(0);
     //  ab.getSelectionModel().clearAndSelect(0);
        TextBoxParser.clearResult();
-      mainarea.getChildren().removeAll(textBoxes);
-      judgesBox.getChildren().removeAll(judgeNames);
-      placementBox.getChildren().removeAll(couplePlace);
+     // mainarea.getChildren().removeAll(textBoxes);
+      //judgesBox.getChildren().removeAll(judgeNames);
+      //placementBox.getChildren().removeAll(couplePlace);
       output.setText("");
       statusMSG.setText("");
       statusMSG2.setText("");
