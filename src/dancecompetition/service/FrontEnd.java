@@ -140,7 +140,7 @@ extends Application
 		{
                     public void handle(ActionEvent e)
                     {
-			clear();
+			clear(e);
                     }
 		});
                 menuPrint.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
@@ -255,13 +255,13 @@ extends Application
 	 * button.  But i need to know if this clears all fields or just 
 	 * the one tab that is selected.
 	 */
-	public void clear()
+	public void clear(ActionEvent event)
 	{
             if (singleSelected)
             {
                 if (finalSelected)
                 {
-                    sfTabDisplay.clear();
+                    sfTabDisplay.clear(event);
                 }
                 else
                     sTabDisplay.clear();
@@ -270,7 +270,7 @@ extends Application
             {
                 if (finalSelected)
                 {
-                    mfTabDisplay.clear();
+                    mfTabDisplay.clear(event);
                 }
                 else
                 {
