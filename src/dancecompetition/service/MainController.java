@@ -241,6 +241,12 @@ public class MainController
       }
 
       //Add all created data to the GUI
+      Label tempLabel = new Label();
+      tempLabel.setText("");
+      tempLabel.setMinHeight(25);
+      tempLabel.setMinWidth(25);
+      tempLabel.setAlignment(Pos.CENTER);
+     judgesBox.getChildren().addAll(tempLabel); 
      judgesBox.getChildren().addAll(judgeNames);
      placementBox.getChildren().addAll(couplePlace);
      mainarea.getChildren().addAll(textBoxes);
@@ -400,6 +406,7 @@ public class MainController
       }
 
       //Add all created data to the GUI
+     Label tempLabel = new Label();
      judgesBox.getChildren().addAll(judgeNames);
      placementBox.getChildren().addAll(couplePlace);
      mainarea.getChildren().addAll(textBoxes);
