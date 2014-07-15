@@ -287,6 +287,12 @@ public class FinalTabDisplay extends VBox {
 			public void handle(ActionEvent event)
 			{
 				clear();
+                                Main.get(0).handleClear(event);
+                                if (!single) {
+                                    for (int i = 1; i < NumDances; i++) {
+                                        Main.get(i).handleClear(event);
+                                    }
+                                }
 			}
 		});
 	}        

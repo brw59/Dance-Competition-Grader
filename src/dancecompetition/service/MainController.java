@@ -565,6 +565,7 @@ public class MainController
   //    age.getSelectionModel().clearAndSelect(0);
     //  level.getSelectionModel().clearAndSelect(0);
     //  ab.getSelectionModel().clearAndSelect(0);
+       TextBoxParser.clearResult();
       mainarea.getChildren().removeAll(textBoxes);
       judgesBox.getChildren().removeAll(judgeNames);
       placementBox.getChildren().removeAll(couplePlace);
