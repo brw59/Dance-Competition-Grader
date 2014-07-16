@@ -293,7 +293,8 @@ public class FinalTabDisplay extends VBox {
 		{
 			public void handle(ActionEvent event)
 			{
-				clear();
+				clear(event);
+                                
 			}
 		});
 	}        
@@ -379,7 +380,7 @@ public class FinalTabDisplay extends VBox {
 	 * clear just calls each of the three main parts clear functions
 	 * so that everything is cleared.
 	 */
-	public void clear()
+	public void clear(ActionEvent event)
 	{
 		mFinalInfoBox.clear();
 		if (mDanceTables != null)
@@ -395,6 +396,12 @@ public class FinalTabDisplay extends VBox {
 		}
 		mFinalInfoDisplay.clear();
 		
+                Main.get(0).handleClear(event);
+                                if (NumDances > 1) {
+                                    for (int i = 1; i < NumDances; i++) {
+                                        Main.get(i).handleClear(event);
+                                    }
+                                }
 	}
 	
 	/**
@@ -583,6 +590,7 @@ public class FinalTabDisplay extends VBox {
     				mDanceTables.get(labelNum - 1).setFocusLast();
     			}
     		}
+                
     	}
     	
     };

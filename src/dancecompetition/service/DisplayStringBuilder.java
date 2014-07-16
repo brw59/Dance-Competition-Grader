@@ -31,13 +31,18 @@ public class DisplayStringBuilder {
     *
     * @return string representing the header.
     */
-   private String buildHeader()
+   private String buildHeader(Boolean isSingle)
    {
-      return "" + mData.getHeat().getAge() + "\n" + mData.getHeat().getLevel() +
+       String temp = "" + mData.getHeat().getAge() + "\n" + mData.getHeat().getLevel() +
       "\n" + mData.getHeat().getStyle() + "\n\n" + "Number of Judges: " +
       mData.getHeat().getNumJudges() + "\n" + "Number of Couples: " +
-      mData.getHeat().getNumCouples() + "\n" + "Majority: " +
-      mData.getMajority() + "\n" + "A/B: " + mData.getHeat().getAB() + "\n\n";
+      mData.getHeat().getNumCouples() + "\n" + "Majority: ";
+       if (isSingle){
+      return  temp + mData.getMajority() + "\n" + "A/B: " + mData.getHeat().getAB() + "\n\n";
+       }
+       else {
+       return temp + mData.getMajority() + "\n" + "Number of Dances: " + mData.getHeat().getAB() + "\n\n";    
+       }
    }
    
    /**
@@ -163,7 +168,7 @@ public class DisplayStringBuilder {
       if (first == 0)
       {
           // The first few lines are the header from the Heat object
-          output = buildHeader();
+          output = buildHeader(true);
       }
 
       //Between the header and the main table, we need to include a ranking 
@@ -253,7 +258,7 @@ public class DisplayStringBuilder {
       if (first == 0)
       {
           // The first few lines are the header from the Heat object
-          output = buildHeader();
+          output = buildHeader(false);
       }
 
       //Between the header and the main table, we need to include a ranking 

@@ -140,7 +140,7 @@ extends Application
 		{
                     public void handle(ActionEvent e)
                     {
-			clear();
+			clear(e);
                     }
 		});
                 menuPrint.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
@@ -174,7 +174,7 @@ extends Application
 		borderPane.setTop(menuBar);
                 ScrollPane scr = new ScrollPane();
                 scr.setContent(tabPane);
-                scr.setPrefSize(900, 625);
+                scr.setPrefSize(887, 630);
 		borderPane.setCenter(scr);
                 
                 //ScrollPane scr = new ScrollPane();
@@ -182,7 +182,7 @@ extends Application
                 //scr.setPrefSize(800, 800);
 		root.getChildren().add(borderPane);
 		
-		Scene mScene = new Scene(root, 900, 650);
+		Scene mScene = new Scene(root, 875, 650);
 		mScene.setFill(Color.LIGHTGREY);
 	
 		pStage.setScene(mScene);
@@ -255,13 +255,14 @@ extends Application
 	 * button.  But i need to know if this clears all fields or just 
 	 * the one tab that is selected.
 	 */
-	public void clear()
+	public void clear(ActionEvent event)
 	{
             if (singleSelected)
             {
                 if (finalSelected)
                 {
-                    sfTabDisplay.clear();
+
+                    sfTabDisplay.clear(event);
                 }
                 else
                     sTabDisplay.clear();
@@ -270,7 +271,8 @@ extends Application
             {
                 if (finalSelected)
                 {
-                    mfTabDisplay.clear();
+
+                    mfTabDisplay.clear(event);
                 }
                 else
                 {
