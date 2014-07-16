@@ -7,7 +7,9 @@
 package dancecompetition.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -28,6 +30,7 @@ public class MDRuler {
     */
    private Placement [] place;
    private Ruler [] mRuler;
+   private Map<Integer, Integer> map;
 
    private int numCouples;
     private int numDances;
@@ -70,7 +73,7 @@ public class MDRuler {
    {
        int [] totals = MDTable.getTotals();
        position = new int [place.length];
-       System.out.println(place.length);
+       
        
        for(int p = 0; p < place.length; p++)
        {
@@ -197,18 +200,20 @@ public class MDRuler {
 
 	public void computeTotals(Placement [] placement)
 	{
-            //System.out.println(placement[0].getScore());
-	    for (int i = 0; i < numCouples; i++)
-	    {
-                for(int j = 0; j < place.length; i++)
-                {
-                    if(placement[i].getDanceNum() == placement[j].getDanceNum())
-                    {
-                        System.out.println(totals[i]);
-                        totals[i] += placement[j].getScore();
-                    }
+            
+            map = new HashMap<>();
+            for(Placement p : placement){
+                int Couple = p.getDanceNum();
+                int Score = p.getScore();
+                if(map.containsKey(Couple)){
+                    int oldScore = map.get(Couple);
+                    map.put(Couple, oldScore + Score);
+                }
+                else{
+                    map.put(Couple, Score);
                 }
             }
+            
 	}
 
 	public int [] getTotals()

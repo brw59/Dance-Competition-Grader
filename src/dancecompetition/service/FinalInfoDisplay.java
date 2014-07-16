@@ -480,7 +480,7 @@ public class FinalInfoDisplay {
          mFileWriter = new FileWriter(mSaveFile, true);
 
          //push whatever is in the mPreview box to the bottom of the output file
-         mFileWriter.write(mPreview.getText() + "\n\n");
+         mFileWriter.write(mCalculations.getText() + "\n\n");
 
          mFileWriter.close();
       }
@@ -532,14 +532,11 @@ public class FinalInfoDisplay {
      //  temp.setContent(mCalculations.getText());
       // temp.
        PrinterJob job = PrinterJob.createPrinterJob();
-       if (job != null) {
-           boolean success = job.printPage(temp);
-            if (success) {
+       if (job.showPrintDialog(mPrimaryStage) && job.printPage(temp)) {
                 job.endJob();
-            }
        }
        
-  }
+    }
     
        public TextArea getCalcBox() {
         return mCalculations;

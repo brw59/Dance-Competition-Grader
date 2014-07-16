@@ -224,10 +224,7 @@ public class FinalTabDisplay extends VBox {
                                                         public void changed(ObservableValue<? extends Boolean> arg0, 
                                                                             Boolean oV, Boolean nV)
                                                         {
-                                                            if(nV)
-                                                            {
-                                                        	lableFinder();
-                                                            }
+                                                            
                                                         }
                                                     });
 							
@@ -246,7 +243,6 @@ public class FinalTabDisplay extends VBox {
 					}
 					scr.setContent(rightTop);
 					genScore.visibleProperty().set(true);
-                                        
                                 }
 				else
 				{
@@ -282,9 +278,9 @@ public class FinalTabDisplay extends VBox {
                                         placements.add(place);
                                     }
                                 }
-                                mdRuler = new MDRuler(NumCouples, NumDances);
+                                mdRuler = new MDRuler(NumCouples, NumDances, placements);
                                 Main.get(0).handleMiltiCalcButton(0, single, event, mFinalInfoDisplay.getCalcBox(),
-                                       labelTexts, mdRuler, NumDances, RulerArray);
+                                       labelTexts, mdRuler, NumDances, placements);
                             }
                                 
 			}

@@ -86,9 +86,9 @@ public class SingleFinalLite
       mRuler.implementRules(mData);
    }
 
-   public void implementMDRules(Ruler [] rules, MDRuler MultiRule){
+   public void implementMDRules(List<Placement> place, MDRuler MultiRule){
        
-       MultiRule.implementRules(rules);
+       MultiRule.implementRules(place);
    }
    /**
     * @param args the command line arguments

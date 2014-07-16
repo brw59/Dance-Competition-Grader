@@ -555,7 +555,7 @@ public class MainController
 
    
    public void handleMiltiCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations,
-                                       List<TextField> dancename, MDRuler mdRule, int numDances, Ruler [] Rules)
+                                       List<TextField> dancename, MDRuler mdRule, int numDances, List<Placement> place)
    {
       String tempStyle = DanceStyle;
       String tempLevel = Level;
@@ -564,7 +564,7 @@ public class MainController
       int NumDances = numDances;
       int tempJudges = NumJudges;
       int tempCouples = NumCouples;
-      Ruler [] rules = Rules;
+      List<Placement> placement = place;
       
       mdRuler = mdRule;
       List<TextField> danceName = dancename;
@@ -606,7 +606,7 @@ public class MainController
       //output the result int the output field
       result = TextBoxParser.getResult();
       output.setEditable(false);
-      SingleFinalLite.getInstance().implementMDRules(rules, mdRuler);
+      SingleFinalLite.getInstance().implementMDRules(placement, mdRuler);
       
       
       if(isSingle)
