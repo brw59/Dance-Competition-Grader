@@ -174,7 +174,7 @@ extends Application
 		borderPane.setTop(menuBar);
                 ScrollPane scr = new ScrollPane();
                 scr.setContent(tabPane);
-                scr.setPrefSize(900, 625);
+                scr.setPrefSize(890, 630);
 		borderPane.setCenter(scr);
                 
                 //ScrollPane scr = new ScrollPane();
@@ -182,7 +182,7 @@ extends Application
                 //scr.setPrefSize(800, 800);
 		root.getChildren().add(borderPane);
 		
-		Scene mScene = new Scene(root, 900, 650);
+		Scene mScene = new Scene(root, 875, 650);
 		mScene.setFill(Color.LIGHTGREY);
 	
 		pStage.setScene(mScene);
