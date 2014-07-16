@@ -174,7 +174,7 @@ extends Application
 		borderPane.setTop(menuBar);
                 ScrollPane scr = new ScrollPane();
                 scr.setContent(tabPane);
-                scr.setPrefSize(890, 630);
+                scr.setPrefSize(887, 630);
 		borderPane.setCenter(scr);
                 
                 //ScrollPane scr = new ScrollPane();
