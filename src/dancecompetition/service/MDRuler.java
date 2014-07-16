@@ -7,9 +7,11 @@
 package dancecompetition.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 
@@ -69,43 +71,33 @@ public class MDRuler {
     * Implements rule 9. Rule 9 adds the totals from the dance
     *
     */
-   private int [] rule9()
-   {
-       int [] totals = MDTable.getTotals();
-       position = new int [place.length];
-       
-       
-       for(int p = 0; p < place.length; p++)
-       {
-	   position[p] = p;
-       }
-       for(int t = 0; t < place.length; t++)
-       {	   
-	   for(int p = 0; p < place.length; p++)
-	   {
-	       if(totals[t] < totals[position[p]])
-	       {
-		   int temp = position[p];
-		   position[p] = t;
-		   position[t] = temp;
-	       }
-	   }
-       }
-       return totals;
+   private Map<Integer, Integer> rule9()
+   {   //This sorts the map from greatest to least.
+       ValueComparator bvc = new ValueComparator(map);
+       TreeMap<Integer, Integer> sorted_Map = new TreeMap<Integer, Integer>(bvc);
+       sorted_Map.putAll(map);
+       System.out.println("Results" + sorted_Map);
+       return sorted_Map;
    }
+   
+   class ValueComparator implements Comparator<Integer>{
+       Map<Integer, Integer> base;
+       public ValueComparator(Map<Integer, Integer> base){
+           this.base = base;
+       }
+       public int compare(Integer a, Integer b){
+           if(base.get(a) >= base.get(b)){
+               return -1;
+           }
+           else{
+               return 1;
+          }
+    }
+}
     
-   private void checkTies(int [] totals)
+   private void checkTies(Map<Integer, Integer> map)
    {
-       List<Integer> [] tTotals = new ArrayList[place.length];
-       for(int i = 0; i < place.length; i++){
-	   tTotals[totals[i]].add(position[i]);
-       }
-
-       for(int i = 0; i <= numCouples * numDances; i++)
-       {
-	   if(tTotals[i].size() > 1)
-	       rule10(tTotals[i]);
-       }
+       
    }
 
    /**
@@ -213,7 +205,6 @@ public class MDRuler {
                     map.put(Couple, Score);
                 }
             }
-            
 	}
 
 	public int [] getTotals()
