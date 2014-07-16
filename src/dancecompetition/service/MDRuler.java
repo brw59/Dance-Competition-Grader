@@ -26,16 +26,18 @@ public class MDRuler {
    /**
     * The ruler objects
     */
+   private Placement [] place;
    private Ruler [] mRuler;
 
    private int numCouples;
     private int numDances;
    private MultiDanceTable MDTable;
 
-    public MDRuler(int pNumCouples, int pNumDances)
+    public MDRuler(int pNumCouples, int pNumDances, List<Placement> placement)
     {
 	numCouples = pNumCouples;
 	numDances = pNumDances; 
+        place = new Placement[placement.size()];
 	MDTable = new MultiDanceTable(pNumCouples);
     }
 
@@ -48,13 +50,16 @@ public class MDRuler {
     * @param  pRuler The Ruler array object that will be mutated
     * @return mRuler The Ruler array object, having been modified by the rules.
     */
-   public Ruler [] implementRules(Ruler [] pRuler)
+   public Placement [] implementRules(List<Placement> placement)
    {
-      mRuler = pRuler;
-      MDTable.computeTotals(mRuler); 
+      for(int i = 0; i < placement.size(); i++)
+      {
+          place[i] = placement.get(i);
+      }
       
+      MDTable.computeTotals(place);
       checkTies(rule9());
-      return mRuler;
+      return place;
    }
 
    /**
@@ -64,14 +69,16 @@ public class MDRuler {
    private int [] rule9()
    {
        int [] totals = MDTable.getTotals();
-       position = new int [numCouples];
-       for(int p = 0; p < numCouples; p++)
+       position = new int [place.length];
+       System.out.println(place.length);
+       
+       for(int p = 0; p < place.length; p++)
        {
 	   position[p] = p;
        }
-       for(int t = 0; t < numCouples; t++)
+       for(int t = 0; t < place.length; t++)
        {	   
-	   for(int p = 0; p < numCouples; p++)
+	   for(int p = 0; p < place.length; p++)
 	   {
 	       if(totals[t] < totals[position[p]])
 	       {
@@ -86,10 +93,8 @@ public class MDRuler {
     
    private void checkTies(int [] totals)
    {
-       List<Integer> [] tTotals = new ArrayList[numCouples * numDances];
-       for(int i = 0; i < numCouples; i++){
-           System.out.println(totals[i]);
-           System.out.println(position[i]);
+       List<Integer> [] tTotals = new ArrayList[place.length];
+       for(int i = 0; i < place.length; i++){
 	   tTotals[totals[i]].add(position[i]);
        }
 
@@ -187,16 +192,21 @@ public class MDRuler {
 	public MultiDanceTable(int tNumCouples)
 	{
 	    numCouples = tNumCouples;
-	    totals = new int [numCouples];
+	    totals = new int[numCouples];
 	}
 
-	public void computeTotals(Ruler [] pRuler)
+	public void computeTotals(Placement [] placement)
 	{
-	    for (int i = 0; i < pRuler.length; i++)
+            //System.out.println(placement[0].getScore());
+	    for (int i = 0; i < numCouples; i++)
 	    {
-		Couple [] tCouples = pRuler[i].getData().getCouples();
-		for(int j = 0; j < numCouples; j++){
-		    totals[j] = tCouples[j].getResult();
+                for(int j = 0; j < place.length; i++)
+                {
+                    if(placement[i].getDanceNum() == placement[j].getDanceNum())
+                    {
+                        System.out.println(totals[i]);
+                        totals[i] += placement[j].getScore();
+                    }
                 }
             }
 	}
