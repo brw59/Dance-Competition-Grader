@@ -35,6 +35,9 @@ public class MDRuler {
    private Placement [] newPlace;
    private Ruler [] mRuler;
    private Map<Integer, Integer> map;
+   /*
+   This will be Where we keep the final scores for the dancers.
+   */
    private Placement [] FinalScore;
 
    private int numCouples;
@@ -76,7 +79,7 @@ public class MDRuler {
     */
    private Placement [] rule9()
    {
-       
+       System.out.println("Rule 9 Was Called");
        for(int i = 0; i < newPlace.length; i++){
            for(int j = 0; j < newPlace.length; j++){
                if(newPlace[i].getScore() < newPlace[j].getScore()){
@@ -88,7 +91,9 @@ public class MDRuler {
        }
        return newPlace;
    }
-    
+  /*
+   Here is where we check for any Ties we had from rule 9;
+   */
    private void checkTies(Placement [] places){
        List<Placement> ListPlaces = new ArrayList<Placement>();
        int l = 0;
@@ -112,7 +117,9 @@ public class MDRuler {
        }
    }
 
-   
+   /*
+   This returnes the Final Scores for the Dancers.
+   */
    public Placement [] getFinal(){
        return FinalScore;
    }
@@ -123,10 +130,8 @@ public class MDRuler {
     */
    private void rule10(Placement [] ties)
    {
-       System.out.println(ties[0].getDanceNum());
-       System.out.println(ties[0].getScore());
-       System.out.println(ties[1].getDanceNum());
-       System.out.println(ties[1].getScore());
+       System.out.println("Rule 10 Has been Called");
+       FinalScore = ties;
        
        //find out what position is running the tie
        /*int pos = 0;

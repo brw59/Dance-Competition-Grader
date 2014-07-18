@@ -57,51 +57,12 @@ public class MainController
    /**
     * The main area of the display, used for adding children
     */
-   //@FXML
-   //private Pane mainarea = new Pane();
+   
    public Pane mainarea = new Pane();
-
-   /**
-    * ab choicebox selects if there is an a or b heat in the final
-    */
-  // @FXML
-   private ChoiceBox<?> ab;
-
-   /**
-    * age is the age group of the dancers in the current competition
-    */
-  // @FXML
-   private ChoiceBox<?> age;
-
-   /**
-    * couples selects the number of couples in the heat
-    */
-   //@FXML
-   private ChoiceBox<?> couples;
-
-   /**
-    * dance is the style of dance for the current heat
-    */
-   //@FXML
-   private ChoiceBox<?> dance;
-
-   /**
-    * judges is the number of judges active on the current heat
-    */
-  // @FXML
-   private ChoiceBox<?> judges;
-
-   /**
-    * level is the competition level of the dance
-    */
-   //@FXML
-   private ChoiceBox<?> level;
 
    /**
     * output is the text area where the calculations will be displayed.
     */
-   //@FXML
-   //private TextArea output = new TextArea();
    public TextArea output = new TextArea();
 
    /**
@@ -113,44 +74,36 @@ public class MainController
    /**
     * the placement box, simply a location to place placement labels
     */
-   //@FXML
-   //private VBox placementBox = new VBox();
     public VBox placementBox = new VBox();
    /**
     * judges box, simply a location to place the judge letter labels
     */
-   //@FXML
    public HBox judgesBox = new HBox();
    //private HBox judgesBox = new HBox();
 
    /**
     * Judges names labels, stored in an array for easier insertion
     */
-   //@FXML
    private ArrayList<Label> judgeNames = new ArrayList();
 
    /**
     * Placement labels, stored in an array for easier insertion
     */
-   //@FXML
    private ArrayList<Label> couplePlace = new ArrayList();
 
    /**
     * calculate button, used to request focus to force proper traversal order
     */
-   //@FXML
    private Button calculateButton;
 
    /**
     * statusMsg label, line 1
     */
-   //@FXML
    private Label statusMSG = new Label();
 
    /**
     * statusMSG2 label, line 2
     */
-   //@FXML
    private Label statusMSG2 = new Label();
 
    /**
@@ -317,7 +270,6 @@ public class MainController
          placementBox.getChildren().removeAll(couplePlace);
       }
 
-      generateTable(tempJudges, tempCouples);
       textBoxes.get(0).requestFocus();
 
       //setup last text box to traverse to the calculate button on a keyEvent
@@ -364,89 +316,7 @@ public class MainController
       return labels;
    }
 
-   /**
-    * Creates the table of text fields as an arraylist of textfields
-    *
-    * @param judges represents the current number of Judges for this heat.
-    * @param couples represents the current number of Couples for this heat.
-    */
-   
-   
-   public void generateTable(int njudges, int ncouples)
-   {
-       NumJudges = njudges;
-       NumCouples = ncouples;
-      judgeNames = new ArrayList();
-      couplePlace = new ArrayList();
-      textBoxes = new ArrayList();
-
-      //initialize the array of judges labels
-      judgeNames = generateLabel(njudges, 50, judgesnames);
-      couplePlace = generateLabel(ncouples, 25, places);
-
-      int layoutx = 365;
-
-      //initialize the array of text fields. They have unique id's
-      //and positioning.
-      for (int x = 0; x < njudges; x++)
-      {
-         int layouty = 0;
-
-         for (int y = 0; y < ncouples; y++)
-         {
-            TextField toAdd = new TextField();
-            toAdd.setLayoutX(layoutx);
-            toAdd.setLayoutY(layouty);
-            toAdd.setPrefColumnCount(3);
-            toAdd.setId("box" + x + y);
-            textBoxes.add(toAdd);
-            layouty += 25;
-         }
-
-         layoutx += 50;
-      }
-
-      //Add all created data to the GUI
-     Label tempLabel = new Label();
-     judgesBox.getChildren().addAll(judgeNames);
-     placementBox.getChildren().addAll(couplePlace);
-     mainarea.getChildren().addAll(textBoxes);
-
-      //attempts to create the key listner to use the return/enter key for
-      //traversal
-     EventHandler traverser =
-         new EventHandler<KeyEvent>()
-         {
-            @Override
-            public void handle(KeyEvent event)
-            {
-               int cell = hasFocus(textBoxes);
-               System.err.println(cell);
-
-               if (event.getCode() == KeyCode.ENTER)
-               {
-                  requestFocus(textBoxes.get(cell + 1));
-                  System.out.println(textBoxes.get(cell + 1).getId());
-               }
-
-               event.consume();
-            }
-         };
-     
-      count = 0;
-
-      for (int b = 0; b < ((njudges * ncouples) - 1); b++)
-      {
-         count = b;
-         System.out.println(count);
-         textBoxes.get(b).removeEventHandler(KeyEvent.KEY_RELEASED, traverser);
-         textBoxes.get(b).addEventHandler(KeyEvent.KEY_RELEASED, traverser);
-      }
-   }
-   ;
-   
-
-   /**
+    /**
     * Function which requests the focus for a certain node
     *
     * @param node A Java Node object (in this case a text box).
@@ -564,11 +434,6 @@ public class MainController
    public void handleMiltiCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations,
                                        List<TextField> dancename, MDRuler mdRule, int numDances, List<Placement> place)
    {
-      String tempStyle = DanceStyle;
-      String tempLevel = Level;
-      String tempAB = AB; // or number of dances for multi-dance
-      String tempAge = Age;
-      int NumDances = numDances;
       int tempJudges = NumJudges;
       int tempCouples = NumCouples;
       List<Placement> placement = place;
@@ -626,7 +491,7 @@ public class MainController
    @FXML
    public void handleClear(ActionEvent event)
    {
-       TextBoxParser.clearResult();
+      TextBoxParser.clearResult();
       output.setText("");
       statusMSG.setText("");
       statusMSG2.setText("");
@@ -769,17 +634,6 @@ public class MainController
    @Override
    public void initialize(URL url, ResourceBundle rb)
    {
-       assert ab != null : "fx:id=\"ab\" was not injected: check your FXML file 'MainGUI.fxml'.";
-       assert age != null : "fx:id=\"age\" was not injected: check your FXML file 'MainGUI.fxml'.";
-       assert couples != null : "fx:id=\"couples\" was not injected: check your FXML file 'MainGUI.fxml'.";
-       assert dance != null : "fx:id=\"dance\" was not injected: check your FXML file 'MainGUI.fxml'.";
-       assert judges != null : "fx:id=\"judges\" was not injected: check your FXML file 'MainGUI.fxml'.";
-       assert level != null : "fx:id=\"level\" was not injected: check your FXML file 'MainGUI.fxml'.";
-
-      dance.getSelectionModel().select(0);
-      level.getSelectionModel().select(0);
-      age.getSelectionModel().select(0);
-      ab.getSelectionModel().select(0);
       statusMSG.setLayoutX(161);
       statusMSG.setLayoutY(282);
       statusMSG.setStyle("-fx-font-size:14pt");
