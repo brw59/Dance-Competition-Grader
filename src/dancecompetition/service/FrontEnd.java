@@ -26,8 +26,8 @@ import java.util.prefs.*;
  * This is the program that holds everything together.  It has the 
  * TabPane's on this level, and each TabPane has a TabDisplay.  It also
  * has the menu options on it, and the PublicWindow, which in turn has
- * the pointers to the two PublicDisplays.
- * @author Jeff
+ * the pointers to the two PublicDisplays. Modified to include Final Tabs.
+ * @author Jeff, modified by Ben Walker, James Jorgensen and David Donley
  *
  */
 public class FrontEnd 
@@ -59,8 +59,8 @@ extends Application
 	 private Stage mStage;
    
 	/**
-	 * start will run the program.  Creates 2 TabPane, PublicWindow,
-	 * and 2 PublicDisplay's and sets them all to visible.
+	 * start will run the program.  Creates 2 TabPane, 2 FinalTabPanes, 
+         * PublicWindow, and 2 PublicDisplay's and sets them all to visible.
 	 */
 	public void start(Stage pStage)
 	{
@@ -190,13 +190,14 @@ extends Application
 		pStage.setResizable(false);
 		
 		/*
-		 * this catches a change on the single tab.  If it changes it will send a 
-		 * signal to let the publicWindow know that it needs to change as well
+		 * This checks for which tab is selected and public display will
+                 * change for the callback tabs
 		 */
 		sTab.setOnSelectionChanged(new EventHandler<Event>()
 		{
                     public void handle(Event e)
                     {
+                        //Callback Buddy Single
 			singleSelected = true;
                         finalSelected = false;
 			mPublicWindow.showTab(singleSelected);
@@ -207,6 +208,7 @@ extends Application
 		{
                     public void handle(Event e)
                     {
+                        //Callback Buddy Multi
 			singleSelected = false;
                         finalSelected = false;
                         mPublicWindow.showTab(singleSelected);
@@ -217,6 +219,7 @@ extends Application
 		{
                     public void handle(Event e)
                     {
+                        //Single Final
 			singleSelected = true;
                         finalSelected = true;
                     }
@@ -226,6 +229,7 @@ extends Application
 		{
                     public void handle(Event e)
                     {
+                        //Multi Final
 			singleSelected = false;
                         finalSelected = true;
                     }
@@ -252,7 +256,7 @@ extends Application
 	};
 	
 	/**
-	 * clears and resets all of the required fields, just like the clear
+	 * clears and resets all data, just like the clear
 	 * button.  But i need to know if this clears all fields or just 
 	 * the one tab that is selected.
 	 */
@@ -312,7 +316,8 @@ extends Application
 	
         /**
 	 * prints the results, just like it does when the info is
-	 * pasted
+	 * pasted.  As of now, multi dance final requires save and then print
+         * the text file due to unknown issues with printing multiple pages
 	 */
         public void print() {
             if (singleSelected)
