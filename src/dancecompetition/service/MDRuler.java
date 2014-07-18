@@ -9,6 +9,7 @@ package dancecompetition.service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -31,8 +32,10 @@ public class MDRuler {
     * The ruler objects
     */
    private Placement [] place;
+   private Placement [] newPlace;
    private Ruler [] mRuler;
    private Map<Integer, Integer> map;
+   private Placement [] FinalScore;
 
    private int numCouples;
     private int numDances;
@@ -71,44 +74,62 @@ public class MDRuler {
     * Implements rule 9. Rule 9 adds the totals from the dance
     *
     */
-   private Map<Integer, Integer> rule9()
-   {   //This sorts the map from greatest to least.
-       ValueComparator bvc = new ValueComparator(map);
-       TreeMap<Integer, Integer> sorted_Map = new TreeMap<Integer, Integer>(bvc);
-       sorted_Map.putAll(map);
-       System.out.println("Results" + sorted_Map);
-       return sorted_Map;
-   }
-   
-   class ValueComparator implements Comparator<Integer>{
-       Map<Integer, Integer> base;
-       public ValueComparator(Map<Integer, Integer> base){
-           this.base = base;
-       }
-       public int compare(Integer a, Integer b){
-           if(base.get(a) >= base.get(b)){
-               return -1;
-           }
-           else{
-               return 1;
-          }
-    }
-}
-    
-   private void checkTies(Map<Integer, Integer> map)
+   private Placement [] rule9()
    {
        
+       for(int i = 0; i < newPlace.length; i++){
+           for(int j = 0; j < newPlace.length; j++){
+               if(newPlace[i].getScore() < newPlace[j].getScore()){
+                   Placement temp = newPlace[i];
+                   newPlace[i] = newPlace[j];
+                   newPlace[j] = temp;
+               }
+           }
+       }
+       return newPlace;
+   }
+    
+   private void checkTies(Placement [] places){
+       List<Placement> ListPlaces = new ArrayList<Placement>();
+       int l = 0;
+       for(int i = 0; i < places.length; i++)
+       {
+           for(int j = 0; j < places.length; j++){
+               if(i != j && places[i].getScore() == places[j].getScore()){
+                   ListPlaces.add(places[i]);
+               }
+           }
+       }
+       if(!ListPlaces.isEmpty()){
+           Placement [] PL = new Placement[ListPlaces.size()];
+           for(int i = 0; i < ListPlaces.size(); i++){
+               PL[i] = ListPlaces.get(i);
+           }
+           rule10(PL);
+       }
+       else{
+           FinalScore = places;
+       }
    }
 
+   
+   public Placement [] getFinal(){
+       return FinalScore;
+   }
    /**
     * Applies rule 10. 
     *
     * @param pCouples represents the Couple objects being placed.
     */
-   private void rule10(List<Integer> ties)
+   private void rule10(Placement [] ties)
    {
+       System.out.println(ties[0].getDanceNum());
+       System.out.println(ties[0].getScore());
+       System.out.println(ties[1].getDanceNum());
+       System.out.println(ties[1].getScore());
+       
        //find out what position is running the tie
-       int pos = 0;
+       /*int pos = 0;
 
        for(int i = 0; i < numCouples; i++)
        {
@@ -157,7 +178,7 @@ public class MDRuler {
 	   }
 	   position[ties.get(i)] = pos + ties.size() - check - 1;
 	   check = 0;
-       }
+       }*/
 
 
    }
@@ -188,6 +209,7 @@ public class MDRuler {
 	{
 	    numCouples = tNumCouples;
 	    totals = new int[numCouples];
+            newPlace = new Placement[numCouples];
 	}
 
 	public void computeTotals(Placement [] placement)
@@ -205,6 +227,17 @@ public class MDRuler {
                     map.put(Couple, Score);
                 }
             }
+                int i = 0;
+                Iterator it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                Map.Entry pairs = (Map.Entry)it.next();
+                int tempDance = (int)pairs.getKey();
+                int tempScore = (int)pairs.getValue();
+                Placement FinalPlace = new Placement(tempScore, tempDance);
+                newPlace[i] = FinalPlace;
+                it.remove(); // avoids a ConcurrentModificationException
+                i++;
+             }
 	}
 
 	public int [] getTotals()

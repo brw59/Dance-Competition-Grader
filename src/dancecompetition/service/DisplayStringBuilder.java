@@ -338,6 +338,109 @@ public class DisplayStringBuilder {
 
       return output;
    }
+   
+   
+   public String FinalMultiBuildTable(int first, Data pData, List<TextField> danceName, MDRuler mdrule)
+   {
+      mData = pData;
+      String output = "";
+      
+      // "first" makes the header only appear when it's the first calculation
+      if (first == 0)
+      {
+          // The first few lines are the header from the Heat object
+          output = buildHeader(false);
+      }
+
+      output += "Dance Names:";
+      output += "\n";
+      for(int i = 0; i < danceName.size(); i++){
+          output += danceName.get(i).getText();
+          output += "\n";
+      }
+      output += "\n";
+      output += "Ranking:";
+      output += "\n";
+      System.out.println(mdrule.getFinal().length);
+      for(int i = 0; i < mdrule.getFinal().length; i++){
+          output += i + 1;
+          output += ": Couple ";
+          output += mdrule.getFinal()[i].getDanceNum();
+          output += " With a Score of ";
+          output += mdrule.getFinal()[i].getScore();
+          output += "\n";
+      }
+      output += "\n";
+      
+      for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+      {
+          output += "   ";
+      }
+
+      //The judges are separated by letter
+      for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+      {
+         output += ((char) ('A' + i) + " ");
+      }
+
+      //The first column is the sum of the scores of 1
+      output += "   |   1  |";
+
+      //Every subsequent column headers increment by 1
+      for (int i = 2; i < (mData.getHeat().getNumCouples() + 1); i++)
+         output += ("  1-" + i + " |");
+
+      //The first part of the table must be indented 12 spaces
+      output += "\n               ";
+
+      //As well as spacers for the judge columns
+      for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+      {
+         output += "  ";
+      }
+
+      output += "-----";
+
+      //Plus a row to divide the header from the rest of the table.
+      for (int i = 0; i < mData.getHeat().getNumCouples(); i++)
+         output += ("------");
+
+      //Now the table starts
+      output += "\n";
+
+      //The couples will be displayed in numerical order by couple number
+      Arrays.sort(mData.getCouples(), new LexigcographicComparator());
+
+      //Each couple knows how to display its own scores.
+      for (Couple current : mData.getCouples())
+      {
+         output += buildCouple(current);
+      }
+
+      //Print out the spacers for the first portion
+      output += "            ";
+
+      //As well as spacers for the judge columns
+      for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+      {
+         output += "    ";
+      }
+
+      //The first NM column just has the left part of the column border
+      output += "     ";
+
+      //Then print the NMs
+      for (int i = 0; i < mData.getHeat().getNumCouples(); i++)
+      {
+         output += (mData.getNM(i) ? "|    NM|" : "        ");
+      }
+
+      //Followed by two spacing lines.                        
+      output += "\n\n";
+
+      return output;
+   }
+
 
 
    /**

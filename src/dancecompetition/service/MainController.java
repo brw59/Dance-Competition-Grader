@@ -576,11 +576,7 @@ public class MainController
       mdRuler = mdRule;
       List<TextField> danceName = dancename;
       output = mCalculations;
-      /*SingleFinalLite.getInstance().getData()
-                     .setHeat(tempAge, tempLevel, tempStyle, tempJudges,
-         tempCouples, tempAB);*/
-       
-      //Setup needed data
+      
       ArrayList<Integer> result;
       boolean errorA;
       boolean errorB;
@@ -615,20 +611,12 @@ public class MainController
       output.setEditable(false);
       SingleFinalLite.getInstance().implementMDRules(placement, mdRuler);
       
-      
-      if(isSingle)
-      {
-        
-        output.setText(output.getText() + new DisplayStringBuilder().buildTable(first,
-            SingleFinalLite.getInstance().getData()));
-      }
-      else
-      {
-          display = new DisplayStringBuilder();
-          output.setText(output.getText() + display.multiBuildTable(first,
-            SingleFinalLite.getInstance().getData(), danceName));
-      }
+      display = new DisplayStringBuilder();
+      output.setText(output.getText() + display.FinalMultiBuildTable(first,
+      SingleFinalLite.getInstance().getData(), danceName, mdRuler));
    }
+   
+   
    /**
     * Clears the dynamic contents of the GUI. does not clear the number of
     * judges or couples.
@@ -638,14 +626,7 @@ public class MainController
    @FXML
    public void handleClear(ActionEvent event)
    {
-//      dance.getSelectionModel().clearAndSelect(0);
-  //    age.getSelectionModel().clearAndSelect(0);
-    //  level.getSelectionModel().clearAndSelect(0);
-    //  ab.getSelectionModel().clearAndSelect(0);
        TextBoxParser.clearResult();
-     // mainarea.getChildren().removeAll(textBoxes);
-      //judgesBox.getChildren().removeAll(judgeNames);
-      //placementBox.getChildren().removeAll(couplePlace);
       output.setText("");
       statusMSG.setText("");
       statusMSG2.setText("");

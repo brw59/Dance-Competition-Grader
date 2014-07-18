@@ -25,5 +25,11 @@ public class Placement {
     public int getDanceNum(){
         return danceNum;
     }
+    public void setDanceNum(int DanceNum){
+        danceNum = DanceNum;
+    }
     
+    public void setScore(int newScore){
+        score = newScore;
+    }
 }
