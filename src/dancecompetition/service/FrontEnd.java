@@ -209,6 +209,7 @@ extends Application
                     {
 			singleSelected = false;
                         finalSelected = false;
+                        mPublicWindow.showTab(singleSelected);
                     }
 		});
                 
