@@ -25,12 +25,27 @@ class AboutWindow
    {
       VBox vbox = new VBox(8); // spacing = 8
       
+      /**
+       * Callback Buddy
+       * Jeff Bickmore <jbickeff@gmail.com>
+       * Macheknzie Bodily <mwbodily@gmail.com>
+       * Kevin Hardy <console.beep@gmail.com>
+       */
+      
       String callBackDevelopers = "Call Back Development by:"
               + "\n\tJeff Bickmore <jbickeff@gmail.com>"
               + "\n\tMackenzie Bodily <mwbodily@gmail.com>"
               + "\n\tKevin Hardy <console.beep@gmail.com>";
       String thankYou = "\n\nThanks for using the Dance Competition Grader!\n"
        + "\nSpecial thanks to:"
+              /**
+               * Faculty teacher help
+               * Brother Neff
+               * Brother Burton
+               * 
+               * Sponsor:
+               * Brother Felt
+               */
               + "\n\tBrother Felt for sponsoring development"
               + "\n\tBrother Neff and Brother Burton for assisting in development"
               + "\n\tAnd users like you!"
@@ -40,10 +55,24 @@ class AboutWindow
               + "\nThis product was developed by students at"
               + "\nBrigham Young University - Idaho";
       String danceCompDevelopers = "Dance Competition Grader Development by:"
+              /**
+               * Dance Competition and Multi Final Code
+               * We also put everyone else's code together
+               * (last group of students)
+               * Benjamin Walker <learn.wisdom@icloud.com>
+               * David Donley <drdonley53@yahoo.com>
+               * James Jorgensen <j.jorgensent@gmail.com>
+               */
               + "\n\tBenjamin Walker <learn.wisdom@icloud.com>"
               + "\n\tDavid Donley <drdonley53@yahoo.com>"
               + "\n\tJames Jorgensen <j.jorgensent@gmail.com>";
       String singleFinalDevelopers = "Single Final Lite Development by:"
+              /**
+               * Single Final Lite code:
+               * Adam Harris
+               * Chris Vergeray
+               * Kyle Deweese
+               */
               + "\n\tAdam Harris"
               + "\n\tChris Vergeray"
               + "\n\tKyle Deweese";
