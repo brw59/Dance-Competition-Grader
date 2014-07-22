@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,6 +33,11 @@ import javafx.stage.FileChooser;
 public class MainController
    implements Initializable
 {
+    /**
+     * Hold values of the results for Rule 9
+     */
+    public Map<Integer, Integer> map;
+    
    /**
     * The current save file/ destination save will use.
     */

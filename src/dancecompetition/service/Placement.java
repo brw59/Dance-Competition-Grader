@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package dancecompetition.service;
 
 /**
@@ -19,9 +13,12 @@ public class Placement {
         danceNum = setDanceNum;  
     }
     
+    // This is the added up score of all of the multi-dance results
     public int getScore(){
         return score;
     }
+    
+    // returns the number on the back of the dancer
     public int getDanceNum(){
         return danceNum;
     }

@@ -22,27 +22,28 @@ import java.util.TreeMap;
  */
 public class MDRuler {
     
-   /**
-    * The current score that is being assigned. We retain this here so that all
-    * methods have access to it
-    */
-   private int mCurrentScore;
-   private int [] position;
-   /**
-    * The ruler objects
-    */
-   private Placement [] place;
-   private Placement [] newPlace;
-   private Ruler [] mRuler;
-   private Map<Integer, Integer> map;
-   /*
-   This will be Where we keep the final scores for the dancers.
-   */
-   private Placement [] FinalScore;
+    /**
+     * The current score that is being assigned. We retain this here so that all
+     * methods have access to it
+     */
+    private int mCurrentScore;
+    private int [] position;
+    /**
+     * The ruler objects
+     */
+    private Placement [] place;
+    private Placement [] newPlace;
+    private Ruler [] mRuler;
+    public Map<Integer, Integer> map;
+//    public Map<Integer, ArrayList> danceResult = new HashMap<>();
+    /*
+     * This will be Where we keep the final scores for the dancers.
+     */
+    private Placement [] FinalScore;
 
-   private int numCouples;
+    private int numCouples;
     private int numDances;
-   private MultiDanceTable MDTable;
+    private MultiDanceTable MDTable;
 
     public MDRuler(int pNumCouples, int pNumDances, List<Placement> placement)
     {
@@ -188,6 +189,16 @@ public class MDRuler {
 
    }
 
+    /**
+     * Implements Steps of Rule 10.
+     * 
+     * Step 1, 2 and 3 for Rule 10
+     */
+//    private boolean Rule10Steps(Placement[] ties)
+//    {
+//        ;
+//    }
+   
    /**
     * Implements Rule 11.
     * 
@@ -219,11 +230,21 @@ public class MDRuler {
 
 	public void computeTotals(Placement [] placement)
 	{
+            ArrayList<Integer> values = null;
             
             map = new HashMap<>();
             for(Placement p : placement){
                 int Couple = p.getDanceNum();
                 int Score = p.getScore();
+                
+//                if (values == null)
+//                {
+//                    values = new ArrayList<>();
+//                    danceResult.put(p.getDanceNum(), values);
+//                }
+//                values.add(p.getScore());
+//                System.out.println(danceResult.containsKey(p.getDanceNum()));//values);
+                
                 if(map.containsKey(Couple)){
                     int oldScore = map.get(Couple);
                     map.put(Couple, oldScore + Score);
@@ -232,9 +253,10 @@ public class MDRuler {
                     map.put(Couple, Score);
                 }
             }
-                int i = 0;
-                Iterator it = map.entrySet().iterator();
-                while (it.hasNext()) {
+            
+            int i = 0;
+            Iterator it = map.entrySet().iterator();
+            while (it.hasNext()) {
                 Map.Entry pairs = (Map.Entry)it.next();
                 int tempDance = (int)pairs.getKey();
                 int tempScore = (int)pairs.getValue();
@@ -242,7 +264,7 @@ public class MDRuler {
                 newPlace[i] = FinalPlace;
                 it.remove(); // avoids a ConcurrentModificationException
                 i++;
-             }
+            }
 	}
 
 	public int [] getTotals()

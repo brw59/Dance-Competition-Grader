@@ -1,0 +1,52 @@
+Things We have left to implement:
+
+
+Printing:
+
+Multi-Final does not print. The way everything is currently set up to print (the one that
+works for the other three tabs) is by printing the Node the Text 
+is contained in, thus when you need to scroll (like with th Multi-final) it cuts
+off most of the data, so we disabled it.
+
+We did get printing to work correctly printing Multi-final tab stuff, but it only
+worked on one computer. Not sure why. Same exact code would only print the 
+string of text from one computer (Mac OS X Macbook Pro 15" Retina Display 
+version 10.9.4). It even didn't work on other macs.
+All of the printing code that is commented out (including the unused Printing class)
+is the code that worked for everything with a specific computer.
+
+Rule 9
+    - The normal Single Final Rules makes ties all be the lowest place (i.e. 
+four way tie for 2nd place would result in four placed 2nd. With Multi-final rules
+each of the ties needs to work like this: 
+    If there are 6 dancers, and there is a 4 way tie for 2nd. then places are as follows:
+    1st = 1,
+    2nd - 5th place = ((5th - 2nd) / 2) + 2nd = 3.5,
+    6th = 6
+
+    The way you would fix this is by changing certain variables to floats in the 
+Ruler.java class, but it breaks every other class if you change that, they didn't
+think about this situation when the code was originally written. The code doesn't
+use local variables, which makes it much more difficult. See the method 
+"absoluteTie" in Ruler.java...
+
+    - Rule 9 is done except we're having a problem displaying the results of 
+Rule 9. (MDRuler.java) We did manage to display the parts that include the ties though.
+Note: If ties take place in the original individual dances, this rule won't add
+up the results as they should. (see problem above about ties)
+
+
+Implement Rule 10
+    - Rule 10 has not been implemented (MDRuler.java)
+    - Data needs to be displayed (DisplayStringBuilder.java)
+
+
+Rule 11
+    - Rule 11 has not been implemented or displayed (MDRuler & DisplayStringBuilder.java)
+    - Currently the way the "majority" is calculated, it won't work if there are
+an even number of dances in the multi-dance ... the people that wrote that code
+did so very confusingly, so it's difficult to change. The majority code I guess 
+can be done inline because this is the only place it will be used, everywhere
+else it will work because it's working with odd numbers, or an odd number of 
+judges. My suggested solution is to write a specific case inline for this part
+of the calculation and not call the majority function.

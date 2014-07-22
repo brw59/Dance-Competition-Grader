@@ -46,27 +46,6 @@ public class FinalInfoDisplay {
     TextArea mDisplay;
 
     /**
-     * The display that this InfoDisplay will push to
-     */
-    //PublicDisplay mPublicDisplay;
-   
-    /**
-     * The button that, when clicked, pushes the text from mPreview to the
-     * top of mDisplay and mPublicDisplay
-     */
-    //Button mPostToDisplay;
-
-    /**
-     * This button increases the text size in the PublicDisplay
-     */
-    //Button mBiggerText;
-   
-    /**
-     * This button decreases the text size in the PublicDisplay
-     */
-    //Button mSmallerText;
-
-    /**
      * This button clears mPreview and mCalculations. It also clears some
      * things in the other classes, but it is in this class so it's layout
      * is easier to control.

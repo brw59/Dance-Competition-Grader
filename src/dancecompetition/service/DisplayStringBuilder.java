@@ -18,7 +18,8 @@ public class DisplayStringBuilder {
     Data mData;
     public Placement place;
     public List<Placement> placements = new ArrayList<Placement>();
-
+    private int numberOfDances;
+    
     /**
      * Builds a string to be displayed as the header of the calculated results.
      * This is all data drawn directly from the heat object
@@ -35,6 +36,7 @@ public class DisplayStringBuilder {
             return  temp + mData.getMajority() + "\n" + "A/B: " + mData.getHeat().getAB() + "\n\n";
         }
         else {
+            numberOfDances = Integer.parseInt(mData.getHeat().getAB());
             return temp + mData.getMajority() + "\n" + "Number of Dances: " + mData.getHeat().getAB() + "\n\n";    
         }
     }
@@ -171,10 +173,10 @@ public class DisplayStringBuilder {
         output += buildPlacments(mData.getCouples());
 
         //The first part of the table must be indented 12 spaces
-        output += "\n              ";
+        output += "\n             ";
         for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
         {
-            output += "  ";
+            output += "   ";
         }
 
         //The judges are separated by letter
@@ -316,7 +318,7 @@ public class DisplayStringBuilder {
         //As well as spacers for the judge columns
         for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
         {
-            output += "    ";
+            output += "   ";
         }
 
         //The first NM column just has the left part of the column border
@@ -353,19 +355,8 @@ public class DisplayStringBuilder {
             output += danceName.get(i).getText();
             output += "\n";
         }
-        output += "\n";
-        output += "Ranking:";
-        output += "\n";
-        System.out.println(mdrule.getFinal().length);
-        for(int i = 0; i < mdrule.getFinal().length; i++){
-            output += i + 1;
-            output += ": Couple ";
-            output += mdrule.getFinal()[i].getDanceNum();
-            output += " With a Score of ";
-            output += mdrule.getFinal()[i].getScore();
-            output += "\n";
-        }
-        output += "\n";
+        
+        output += "    ";
       
         for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
         {
@@ -373,17 +364,17 @@ public class DisplayStringBuilder {
         }
 
         //The judges are separated by letter
-        for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
-        {
-            output += ((char) ('A' + i) + " ");
-        }
-
-        //The first column is the sum of the scores of 1
-        output += "   |   1  |";
-
-        //Every subsequent column headers increment by 1
-        for (int i = 2; i < (mData.getHeat().getNumCouples() + 1); i++)
-            output += ("  1-" + i + " |");
+//        for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+//        {
+//            output += ((char) ('A' + i) + " ");
+//        }
+//
+//        //The first column is the sum of the scores of 1
+//        output += "   |   1  |";
+//
+//        //Every subsequent column headers increment by 1
+//        for (int i = 2; i < (mData.getHeat().getNumCouples() + 1); i++)
+//            output += ("  1-" + i + " |");
 
         //The first part of the table must be indented 12 spaces
         output += "\n               ";
@@ -409,34 +400,129 @@ public class DisplayStringBuilder {
         //Each couple knows how to display its own scores.
         for (Couple current : mData.getCouples())
         {
-            output += buildCouple(current);
+            output += buildRule10Couple(current, mData, mdrule); // current, mdrule);
         }
 
-        //Print out the spacers for the first portion
-        output += "            ";
+//        //Print out the spacers for the first portion
+//        output += "            ";
+//
+//        //As well as spacers for the judge columns
+//        for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
+//        {
+//            output += "    ";
+//        }
+//
+//        //The first NM column just has the left part of the column border
+//        output += "     ";
+//
+//        //Then print the NMs
+//        for (int i = 0; i < mData.getHeat().getNumCouples(); i++)
+//        {
+//            output += (mData.getNM(i) ? "|    NM|" : "        ");
+//        }
 
-        //As well as spacers for the judge columns
-        for (int i = 0; i < mData.getHeat().getNumJudges(); i++)
-        {
-            output += "    ";
+        output += "\n\n";
+        output += "Ranking:";
+        output += "\n";
+        System.out.println(mdrule.getFinal().length);
+        for(int i = 0; i < mdrule.getFinal().length; i++){
+            output += i + 1;
+            output += ": Couple ";
+            output += mdrule.getFinal()[i].getDanceNum();
+            output += " With a Score of ";
+            output += mdrule.getFinal()[i].getScore();
+            output += "\n";
         }
-
-        //The first NM column just has the left part of the column border
-        output += "     ";
-
-        //Then print the NMs
-        for (int i = 0; i < mData.getHeat().getNumCouples(); i++)
-        {
-            output += (mData.getNM(i) ? "|    NM|" : "        ");
-        }
-
+        output += "\n";
+        
         //Followed by two spacing lines.                        
         output += "\n\n";
 
         return output;
     }
 
+    private String buildRule10Couple(Couple pCouple, Data mData, MDRuler mdruler) // Couple pCouple, MDRuler mdrule)
+    {
+        //The couple number should always be three digits, but this will 
+        //guarantee it
+        String output = String.format("Couple %3d: ", pCouple.getCoupleNum());
 
+        //The first columns will show the scores the judges gave the couple
+        
+        for (int i = 0; i < numberOfDances; i++) // loop for number of dances
+        {
+            
+//            output += mdruler.danceResult.get(111);
+       
+            
+//            if (mdruler.map.containsKey(mdruler.getFinal()[i].getDanceNum()));
+//                output += mdruler.map.get(mdruler.getFinal()[i].getScore()) + " ";
+
+//                mData.getHeat()[i].getCouple(); // need to get Result for each Heat but this line won't work
+            output += (pCouple.getResult() + " "); // get Result for each dancer
+        }
+
+
+        //Separated by a colon
+        output += " : |";
+
+        /*
+         *In order to track before and after displaying a nonZero number
+         *two flags are needed: if the current number is nonZero and if
+         *the couple has been placed by the time that column displays.
+         */
+        boolean isNonZero = false;
+        boolean placed = false;
+
+//        for (int i = 0; i < pCouple.mPlaces.length; i++)
+//        {
+//            //If the previous number was non zero, but the current one is zero
+//            //The couple has been placed by now.
+//            if (isNonZero && (pCouple.getPlaces(i) == 0))
+//            {
+//                placed = true;
+//            }
+//
+//            //isNonZero may be updated now to prepare for the next column
+//            isNonZero = (pCouple.getPlaces(i) > 0);
+//
+//            //If in calculating, there was an equal majority with another couple
+//            //the sum of the scores up to that column must be included
+//            if (pCouple.mEqualMajority[i])
+//            {
+//                output += (String.format("%2d", pCouple.getPlaces(i)) +
+//                String.format("(%2d)|", pCouple.sumScores(i + 1)));
+//            }
+//            else //Otherwise, the display is normal
+//            {
+//                //If the place has a number, display a number
+//                if (pCouple.getPlaces(i) != 0)
+//                {
+//                    output += (" " + String.format("%6d|", pCouple.getPlaces(i)));
+//                } //Display a single dash if zero before placement
+//                else if (! placed)
+//                {
+//                    output += "      -|";
+//                } //Display a solid line if zero after placement
+//                else
+//                {
+//                    output += "----|";
+//                }
+//
+//                //This is the old obfuscated (but one line) version of this line
+//                //output += ((pCouple.getPlaces(i) != 0) ? String.format("%6d|", 
+//                //pCouple.getPlaces(i))
+//                //           : (!placed ? "     -|" : "------|"));
+//            }
+//        }
+//
+//        //Finally, display the final result
+//        output += (" : " + pCouple.getResult() + "\n"); // mdrule.getFinal()[i].getScore()
+
+        output += "\n";
+        
+        return output;
+    }
 
     /**
      * An implementation of the Comparator interface. Used to sort the couples
