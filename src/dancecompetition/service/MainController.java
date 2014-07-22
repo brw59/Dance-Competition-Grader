@@ -1,35 +1,20 @@
 package dancecompetition.service;
 
 import dancecompetition.system.*;
-
-
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-
 import java.net.URL;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.application.Platform;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.geometry.Pos;
-
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -38,9 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 /**
  * The Controller for the Main GUI.
@@ -153,8 +136,6 @@ public class MainController
     * @param judges represents the current number of Judges for this heat.
     * @param couples represents the current number of Couples for this heat.
     */
-   
-   
    public MainController(int njudges, int ncouples, String mAge, String dancestyle, String level, String ab)
    {
        NumJudges = njudges;

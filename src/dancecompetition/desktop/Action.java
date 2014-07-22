@@ -1,12 +1,11 @@
 package dancecompetition.desktop;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
-import java.util.*;
-
-import javafx.application.*;
-import javafx.event.*;
-import javafx.scene.control.*;
 
 /**
  * A class for C.L.A.W.-style wiring of actions to components.

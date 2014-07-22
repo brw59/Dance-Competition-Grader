@@ -3,8 +3,6 @@ package dancecompetition.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -36,7 +34,7 @@ public class Judge extends VBox{
      * checking for the text fields that the Judge holds
      * @param pNum the number of callbacks
      * @param displayCallbackLabels true if 1 -> pNum + 2 needs to be displayed
-     * @param judgeNum the Judge number to determain what lable that judge gets (A - K)
+     * @param judgeNum the Judge number to determine what label that judge gets (A - K)
      * @param pDanceTable the table where the Judge will be stored
      */
     public Judge(int pNum, Boolean displayCallbackLabels, int judgeNum, DanceTable pDanceTable)
@@ -277,10 +275,10 @@ public class Judge extends VBox{
     }
     
     /**
-     * checks to see if there is more than one occurance of the string
+     * checks to see if there is more than one occurrence of the string
      * passed in
      * @param check the string that needs to be checked
-     * @return true if there are more than one occurance of the string in the 
+     * @return true if there are more than one occurrence of the string in the 
      * list
      */
     public boolean errorChecking(String check)

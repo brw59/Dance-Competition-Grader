@@ -7,12 +7,10 @@
 package dancecompetition.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ListIterator;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import javafx.stage.Stage;
 /**
  *
  * @author david donley

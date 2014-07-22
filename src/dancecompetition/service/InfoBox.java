@@ -36,22 +36,17 @@ extends VBox
 	 */
 	public InfoBox(boolean single, Button pButton)
 	{
-		ObservableList<String> ageList = 
-				FXCollections.observableArrayList( "--",
-												   "Peewee",
-												   "Preteen",
-												   "Junior",
-												   "Youth",
-												   "Collegiate",
-												   "Adult",
-												   "Senior"
-													);
-		ObservableList<String> numberOfJudges = 
-				FXCollections.observableArrayList("--","3", "5", "7",
-												  "9", "11"
-													);
-		ObservableList<String> couplesCalledBack = 
-				FXCollections.observableArrayList("--","4", "5", "6",
+            ObservableList<String> ageList = FXCollections.observableArrayList( "--",
+										"Peewee",
+										"Preteen",
+										"Junior",
+                                                                                "Youth",
+										"Collegiate",
+										"Adult",
+										"Senior");
+		ObservableList<String> numberOfJudges = FXCollections.observableArrayList("--","3", "5", 
+                                                                                          "7", "9", "11");
+		ObservableList<String> couplesCalledBack = FXCollections.observableArrayList("--","4", "5", "6",
 												  "7", "8", "9",
 												  "10", "11", "12",
 												  "13", "14", "15",
@@ -62,15 +57,14 @@ extends VBox
 												  "28", "29", "30",
 												  "31", "32", "33",
 												  "34", "35", "36");
-		ObservableList<String> callBacksFor = 
-				FXCollections.observableArrayList("--",
-												  "Round 1",
-												  "Round 2",
-												  "Round 3",
-												  "Round 4",
-												  "QuarterFinal",
-												  "Semifinal",
-												  "Final");
+		ObservableList<String> callBacksFor = FXCollections.observableArrayList("--",
+											"Round 1",
+											"Round 2",
+											"Round 3",
+											"Round 4",
+											"QuarterFinal",
+											"Semifinal",
+											"Final");
 		ObservableList<String> changing;
 		ObservableList<String> danceStyle;
 		ObservableList<String> level;
@@ -109,51 +103,47 @@ extends VBox
 							"Swing",
 							"Two Step",
 							"West Coast Swing",
-							"Bonus Swing"
-						);
+							"Bonus Swing");
 			changing = FXCollections.observableArrayList("--",
-														"A",
-														"B"
-														);
+                                                                    "A",
+                                                                    "B");
 			
 			level = FXCollections.observableArrayList("--",
-												"Newcomer",
-												"Bronze",
-												"Silver 1",
-												"Silver 2",
-												"Gold 1",
-												"Gold 2",
-												"Open",
-												"Bonus",
-												"Novice",
-												"Pre-Champion",
-												"Champion"
-												);
+								  "Newcomer",
+								  "Bronze",
+								  "Silver 1",
+								  "Silver 2",
+								  "Gold 1",
+								  "Gold 2",
+								  "Open",
+								  "Bonus",
+								  "Novice",
+								  "Pre-Champion",
+								  "Champion");
 			changingLabel = "A/B";
 		}
 		else
 		{
 			danceStyle = FXCollections.observableArrayList("--",
-													"Standard",
-													"Latin",
-													"Smooth",	
-													"Rhythm");
+                                                                       "Standard",
+                                                                       "Latin",
+                                                                       "Smooth",	
+                                                                       "Rhythm");
 			
 			changing = FXCollections.observableArrayList("--",
-														 "2",
-														 "3",
-														 "4",
-														 "5");
+                                                                     "2",
+                                                                     "3",
+                                                                     "4",
+                                                                     "5");
 			
 			level = FXCollections.observableArrayList("--",
-												  "Bronze",
-												  "Silver",
-												  "Gold",
-												  "Open",
-												  "Novice",
-												  "Pre-Champion",
-												  "Champion"
-													);
+								  "Bronze",
+								  "Silver",
+								  "Gold",
+								  "Open",
+								  "Novice",
+								  "Pre-Champion",
+								  "Champion");
 			changingLabel = "Number Of Dances";
 		}
 		

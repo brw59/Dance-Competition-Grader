@@ -2,7 +2,6 @@ package dancecompetition.service;
 
 import dancecompetition.system.*;
 
-import java.io.*;
 
 import javafx.scene.image.Image;
 

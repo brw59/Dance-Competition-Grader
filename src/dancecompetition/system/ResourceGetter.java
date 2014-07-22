@@ -1,10 +1,13 @@
 package dancecompetition.system;
 
-import java.io.*;
+import java.io.File;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.URL;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
-import java.net.*;
 
-import java.util.zip.*;
 
 /**
  * Gets resources as streams or strings.

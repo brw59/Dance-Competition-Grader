@@ -1,12 +1,23 @@
 package dancecompetition.system;
 
-import java.io.*;
-
-import java.lang.reflect.*;
-
-import java.util.*;
-import java.util.jar.*;
-import java.util.zip.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.RandomAccessFile;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
 
 /**
  * A class to encapsulate a command shell.
@@ -26,7 +37,7 @@ public class Shell
       };
 
    /**
-    * An index of error message if the file or direectory
+    * An index of error message if the file or directory
     * cannot be moved.
     */
    private static final int cError_Move = 0;
@@ -74,7 +85,7 @@ public class Shell
    private boolean mVerbose;
 
    /**
-    * Holds whether slient mode or not in shell
+    * Holds whether silent mode or not in shell
     */
    private boolean mSilent;
 
@@ -147,9 +158,9 @@ public class Shell
    }
 
    /**
-    * Gets if slient mode is or not
+    * Gets if silent mode is or not
     *
-    * @return true or false for slience mode
+    * @return true or false for silence mode
     */
    public boolean getSilent()
    {
@@ -161,7 +172,7 @@ public class Shell
     *
     * @param pSilent boolean for silent mode
     *
-    * @return silent mode before setting the parameter to the member varible 
+    * @return silent mode before setting the parameter to the member variable 
     */
    public boolean setSilent(boolean pSilent)
    {
@@ -682,7 +693,7 @@ public class Shell
                throw ite.getTargetException();
             }
          }
-         catch (NoSuchMethodException nsme)
+         catch (NoSuchMethodException name)
          {
          }
 

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.scene.control.*;
 import javafx.scene.Group;
@@ -12,13 +11,8 @@ import javafx.scene.Scene;
 import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.print.*;
-import javafx.scene.Node;
-import javafx.scene.transform.Scale;
 
 import java.util.prefs.*;
 

@@ -1,12 +1,9 @@
 package dancecompetition.service;
 
-import dancecompetition.service.*;
-import dancecompetition.system.*;
 import static dancecompetition.system.ResourceGetter.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

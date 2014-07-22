@@ -1,19 +1,21 @@
 package dancecompetition.desktop;
 
-import dancecompetition.service.*;
+import dancecompetition.service.ImageGetter;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import dancecompetition.system.*;
 
-import javafx.application.*;
-
-import javafx.geometry.*;
-
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-
-import javafx.stage.*;
 
 /**
  * Sample GUI class.
