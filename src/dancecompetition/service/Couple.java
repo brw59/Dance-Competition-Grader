@@ -10,7 +10,8 @@ package dancecompetition.service;
  *
  * @author daviddonley
  */
-    /**
+    
+/**
  * Couple Class
  * Contains the information relative to the Couples, including scoring
  * information and their own display function.

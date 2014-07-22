@@ -76,7 +76,7 @@ public class Ruler{
     * that have not been calculated are tallied
     *
     * @param pColumnNumber The current column to be placed. This is zero based.
-    * @param pCouples represnts the couples currently being placed.
+    * @param pCouples represents the couples currently being placed.
     */
    private void tallyColumn(int pColumnNumber, Couple[] pCouples)
    {
@@ -114,7 +114,7 @@ public class Ruler{
     * placed automatically.
     *
     * @param pColumnNumber The current column to be placed. This is zero based.
-    * @param pCouples represnts the couples currently being placed.
+    * @param pCouples represents the couples currently being placed.
     * @return the number of couples with a majority
     */
    private int rule5(int pColumnNumber, Couple[] pCouples)
@@ -233,12 +233,12 @@ public class Ruler{
    /**
     * Rule 7 says that if multiple couples have a majority, and the majorities
     * are equal, the tie will be broken by summing the scores that add up to
-    * that majority and whoever has the greater sum recieves the better
-    * placement. If they both have the same sum, we cascade to the next collumn
+    * that majority and whoever has the greater sum receives the better
+    * placement. If they both have the same sum, we cascade to the next column
     * and begin applying rules 5, 6, and 7 on just those couples until they are
     * placed.
     * 
-    * @param pColumnNumber the current column under scutiny.
+    * @param pColumnNumber the current column under scrutiny.
     * @param pCouples represents the couples being placed.
     */
    private void rule7(int pColumnNumber, List<Couple> pCouples)
@@ -345,9 +345,9 @@ public class Ruler{
     * there is a true tie. We check to see if there are no more columns
     * and if there are not, the couples that made it this far are placed.
     * 
-    * @param col represents the currnt column under scrutiny.
+    * @param col represents the current column under scrutiny.
     * @param pCouples represents the Couples being placed.
-    * @return True if the couples had an absoulte tie, false otherwise
+    * @return True if the couples had an absolute tie, false otherwise
     */
    private Boolean absoluteTie(int col, ArrayList<Couple> pCouples)
    {

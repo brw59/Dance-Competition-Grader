@@ -15,7 +15,7 @@ import java.util.TreeMap;
 import javafx.stage.Stage;
 /**
  *
- * @author daviddonley
+ * @author david donley
  */
 public class Data {
     
@@ -186,7 +186,7 @@ public class Data {
     * on the heat that was just set. The majority is recalculated whether the
     * heat was reset or not, just as a precaution in case the majority was set
     * to the wrong value somewhere else.
-    * Stores the heat obejct provided.
+    * Stores the heat object provided.
     *
     * @param pHeat represents the heat to be copied.
     */
