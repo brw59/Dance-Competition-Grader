@@ -532,6 +532,5 @@ class InfoDisplay
         if (job.showPrintDialog(mPrimaryStage) && job.printPage(temp)) {
             job.endJob();
         }
-        
     }
 }
