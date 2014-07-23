@@ -28,14 +28,12 @@ public class MDRuler {
      */
     private int mCurrentScore;
     private int [] position;
-    /**
-     * The ruler objects
-     */
+    //This is where the original placements are
     private Placement [] place;
+    //This is the updated placement
     private Placement [] newPlace;
-    private Ruler [] mRuler;
+   //This is used to add the placements together for rule 9-10;
     public Map<Integer, Integer> map;
-//    public Map<Integer, ArrayList> danceResult = new HashMap<>();
     /*
      * This will be Where we keep the final scores for the dancers.
      */
@@ -235,16 +233,7 @@ public class MDRuler {
             map = new HashMap<>();
             for(Placement p : placement){
                 int Couple = p.getDanceNum();
-                int Score = p.getScore();
-                
-//                if (values == null)
-//                {
-//                    values = new ArrayList<>();
-//                    danceResult.put(p.getDanceNum(), values);
-//                }
-//                values.add(p.getScore());
-//                System.out.println(danceResult.containsKey(p.getDanceNum()));//values);
-                
+                int Score = p.getScore();   
                 if(map.containsKey(Couple)){
                     int oldScore = map.get(Couple);
                     map.put(Couple, oldScore + Score);
