@@ -509,16 +509,12 @@ class InfoDisplay
            Logger.getLogger(FinalInfoDisplay.class.getName()).log(Level.SEVERE, null, ex);
        }
        **/
-       Node temp = new TextArea(mCalculations.getText()); 
-     //  temp.setContent(mCalculations.getText());
-      // temp.
-       PrinterJob job = PrinterJob.createPrinterJob();
-       if (job != null) {
-           boolean success = job.printPage(temp);
-            if (success) {
-                job.endJob();
-            }
-       }
+
        
+        Node temp = new TextArea(mPreview.getText()); 
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job.showPrintDialog(mPrimaryStage) && job.printPage(temp)) {
+            job.endJob();
+        }
     }
 }
