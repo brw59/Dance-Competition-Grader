@@ -352,7 +352,7 @@ public class MainController
     * @param event An on click event generated from the GUI by the user.
     */
    //@FXML
-   public void handleCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations,
+   public boolean handleCalcButton(int first, Boolean isSingle, ActionEvent event, TextArea mCalculations,
                                 List<TextField> dancename)
    {
       String tempStyle = DanceStyle;
@@ -380,7 +380,7 @@ public class MainController
         statusMSG.setText("");
         statusMSG2.setText("");
     }
-
+         
       //Call error checking functions
       errorA = TextBoxParser.checkNumbers(toCheck, tempJudges, tempCouples);
       errorB = TextBoxParser.checkBounds(toCheck, tempJudges, tempCouples);
@@ -394,9 +394,15 @@ public class MainController
          mainarea.getChildren().addAll(textBoxes);
          statusMSG.setText("Check the values entered above!");
 
-         return;
+        // clear if it failed, otherwise it will throw an exception
+        TextBoxParser.clearResult();
+        statusMSG.setText("");
+        statusMSG2.setText("");
+         
+         return false;
       }
-
+                System.out.println("It made it thus farther");
+      
       //output the result int the output field
       result = TextBoxParser.getResult();
       output.setEditable(false);
@@ -415,6 +421,7 @@ public class MainController
           output.setText(output.getText() + display.multiBuildTable(first,
             SingleFinalLite.getInstance().getData(), danceName));
       }
+      return true;
    }
 
    

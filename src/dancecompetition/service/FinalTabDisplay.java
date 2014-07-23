@@ -7,25 +7,24 @@
 package dancecompetition.service;
 
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
@@ -267,14 +266,16 @@ public class FinalTabDisplay extends VBox {
                                 RulerArray = new Ruler[NumDances];
                                 for (int i = 0; i < NumDances; i++){
                                     System.out.println("Calculate MultiDance Final Scores Here"); 
-                                    Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts);
-                                    Display = Main.get(i).display;
-                                    RulerArray[i] = SingleFinalLite.getInstance().getRuler();
-                                    int pCouples = Integer.parseInt(allInfo.get(4));
-                                    for(int j = 0; j < pCouples; j++){
-                                        place = new Placement(Display.placements.get(j).getScore(),
-                                                Display.placements.get(j).getDanceNum());
-                                        placements.add(place);
+                                    if (Main.get(i).handleCalcButton(i, single, event, mFinalInfoDisplay.getCalcBox(), labelTexts))
+                                    {
+                                        Display = Main.get(i).display;
+                                        RulerArray[i] = SingleFinalLite.getInstance().getRuler();
+                                        int pCouples = Integer.parseInt(allInfo.get(4));
+                                        for(int j = 0; j < pCouples; j++) {
+                                            place = new Placement(Display.placements.get(j).getScore(),
+                                                    Display.placements.get(j).getDanceNum());
+                                            placements.add(place);
+                                        }
                                     }
                                 }
                                 mdRuler = new MDRuler(NumCouples, NumDances, placements);
