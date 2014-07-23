@@ -50,3 +50,8 @@ can be done inline because this is the only place it will be used, everywhere
 else it will work because it's working with odd numbers, or an odd number of 
 judges. My suggested solution is to write a specific case inline for this part
 of the calculation and not call the majority function.
+
+
+Calculation display for final dances
+    - Pop up new window for easier viewability. Much like callback public 
+display window, but without it displaying to the projector.
